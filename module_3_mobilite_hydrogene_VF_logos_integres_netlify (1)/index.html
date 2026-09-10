@@ -31,8 +31,8 @@ button,input,select{font:inherit}
 .brand{display:flex;align-items:center;gap:11px;text-decoration:none;min-width:max-content}
 .brandmark{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(135deg,#087f96,var(--cyan));color:white;font-weight:1000;font-size:1.12rem;box-shadow:0 14px 34px rgba(39,211,228,.28)}
 .brand strong{display:block;color:var(--ink);font-size:1.15rem;line-height:1.05}.brand small{display:block;color:var(--muted);font-weight:800;font-size:.82rem;margin-top:4px}
-.navlinks{display:flex;align-items:center;gap:4px;margin-left:auto;overflow:auto;scrollbar-width:none}.navlinks::-webkit-scrollbar{display:none}
-.navlinks a{white-space:nowrap;text-decoration:none;padding:9px 12px;border-radius:999px;color:#31586d;font-weight:900;font-size:.87rem;transition:.2s}
+.navlinks{display:flex;align-items:center;gap:6px;margin-left:auto;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin;scrollbar-color:var(--cyan) rgba(39,211,228,.15)}.navlinks::-webkit-scrollbar{height:5px}.navlinks::-webkit-scrollbar-track{background:rgba(39,211,228,.1);border-radius:10px}.navlinks::-webkit-scrollbar-thumb{background:linear-gradient(90deg,var(--teal),var(--cyan));border-radius:10px}
+.navlinks a{white-space:nowrap;text-decoration:none;padding:9px 14px;border-radius:999px;color:#31586d;font-weight:900;font-size:.88rem;transition:all .2s ease}
 .navlinks a:hover,.navlinks a.active{background:#e2f8fb;color:#05283b}
 .partners{display:flex;align-items:center;gap:5px;padding:3px 7px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.78);box-shadow:var(--shadow2);min-width:max-content}
 .partners img{display:block;object-fit:contain;filter:drop-shadow(0 7px 12px rgba(6,27,43,.08))}
@@ -67,7 +67,7 @@ h4{margin:0 0 7px;color:#0b3448}.lead{font-size:clamp(1.08rem,1.42vw,1.36rem);ma
 .pulse{position:absolute;height:6px;border-radius:99px;background:#fff;box-shadow:0 0 14px #fff;animation:pulse 2.2s linear infinite}.p1{left:215px;top:84px;width:115px}.p2{right:150px;top:84px;width:135px;animation-delay:.8s}@keyframes pulse{0%{opacity:.2;transform:scaleX(.25);transform-origin:left}45%{opacity:1}100%{opacity:.2;transform:scaleX(1);transform-origin:left}}
 .simgrid{display:grid;grid-template-columns:330px minmax(0,1fr);gap:28px;align-items:start;margin-top:30px}
 .controls{background:#fff;border:1px solid var(--line);border-radius:28px;padding:24px;box-shadow:var(--shadow2)}
-.control{margin-bottom:22px}.control label{display:flex;justify-content:space-between;gap:12px;font-weight:950;color:#0a3447;margin-bottom:9px}.control output{color:#087b8e}.control input[type=range],.control select{width:100%;accent-color:var(--cyan)}
+.control{margin-bottom:22px}.control label{display:flex;justify-content:space-between;gap:12px;font-weight:950;color:#0a3447;margin-bottom:9px}.control output{color:#087b8e}.control input[type=range]{width:100%;accent-color:var(--cyan)}.control select{width:100%;min-height:50px;padding:12px 16px;border-radius:16px;border:1.5px solid rgba(8,66,92,.18);background:#f8fcfe url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2087b8e' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") no-repeat right 16px center;appearance:none;-webkit-appearance:none;color:#07283a;font-weight:800;font-size:.95rem;transition:all .22s ease;box-shadow:0 4px 12px rgba(6,27,43,.03);cursor:pointer}.control select:hover{border-color:var(--teal);background-color:#fff;box-shadow:0 6px 18px rgba(13,165,183,.12)}.control select:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 4px rgba(39,211,228,.2);background-color:#fff}
 .metricgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}.metric{padding:16px;border:1px solid var(--line);border-radius:18px;background:#f8fcfe}.metric b{display:block;font-size:1.35rem;color:#07283a}.metric small{color:#6b8392;font-weight:800}
 .vehicleSim{min-height:590px}.carScene{height:420px;border-radius:28px;position:relative;overflow:hidden;background:linear-gradient(145deg,#071f31,#0b6070)}
 .carScene:before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:52px 52px}
@@ -76,7 +76,7 @@ h4{margin:0 0 7px;color:#0b3448}.lead{font-size:clamp(1.08rem,1.42vw,1.36rem);ma
 .energyline{position:absolute;height:7px;border-radius:99px;overflow:hidden;background:rgba(255,255,255,.28)}.energyline i{display:block;height:100%;width:50%;background:linear-gradient(90deg,#fff,#ffd84d);box-shadow:0 0 12px #fff;transition:.3s}.l1{left:25%;top:89px;width:17%}.l2{left:56%;top:89px;width:22%}.l3{left:53%;top:177px;width:25%;transform:rotate(-18deg)}
 .flowBadge{position:absolute;right:24px;bottom:22px;padding:10px 14px;border-radius:16px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);color:#fff;font-weight:900}
 .tabs{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}.tab{border:1px solid var(--line);background:#fff;padding:10px 15px;border-radius:999px;font-weight:900;color:#31586d;cursor:pointer}.tab.active{background:var(--navy);color:white}
-.usecards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.usecard{position:relative;overflow:hidden;min-height:190px}.useicon{font-size:2.6rem}.scorebar{height:10px;border-radius:99px;background:#e4eff3;overflow:hidden;margin-top:14px}.scorebar span{display:block;height:100%;width:50%;background:linear-gradient(90deg,var(--green),var(--cyan),var(--orange));transition:.4s}
+.usecards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.usecard{position:relative;overflow:hidden;min-height:200px;background:#fff;border:1px solid rgba(8,66,92,.12);border-radius:24px;padding:22px;box-shadow:0 10px 28px rgba(6,27,43,.06);transition:all .28s cubic-bezier(.16,1,.3,1)}.usecard:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(6,27,43,.12);border-color:rgba(39,211,228,.4)}.usecard h3{margin:8px 0 6px;color:#061826;font-size:1.18rem}.usecard p{margin:0;color:#557285;font-size:.92rem;line-height:1.5}.useicon{font-size:2.8rem;display:inline-block;margin-bottom:4px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.08))}.scorebar{height:10px;border-radius:99px;background:#e4eff3;overflow:hidden;margin-top:16px;box-shadow:inset 0 1px 3px rgba(0,0,0,.08)}.scorebar span{display:block;height:100%;width:50%;border-radius:99px;background:linear-gradient(90deg,var(--teal),var(--cyan),var(--green));transition:width .5s ease}
 .stationScene{height:470px;border-radius:30px;background:linear-gradient(145deg,#071f31,#0b6474);position:relative;overflow:hidden}.stationScene:before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:48px 48px}
 .cascade{position:absolute;left:34px;top:70px;display:flex;gap:13px}.bottle{width:70px;height:250px;border-radius:36px;background:rgba(255,255,255,.16);border:2px solid rgba(255,255,255,.35);padding:8px;display:flex;align-items:flex-end}.bottle span{display:block;width:100%;height:70%;border-radius:28px;background:linear-gradient(180deg,#27d3e4,#1767d3);transition:.5s}
 .dispenser{position:absolute;left:48%;top:82px;width:150px;height:260px;border-radius:28px;background:#f6fcfe;box-shadow:0 20px 40px rgba(0,0,0,.18);padding:22px;text-align:center;color:#082235}.screen{height:72px;border-radius:16px;background:#08283a;color:#c8fbff;display:grid;place-items:center;font-weight:1000;margin:18px 0}.hose{position:absolute;left:61%;top:168px;width:190px;height:120px;border:7px solid #dffcff;border-left:none;border-bottom:none;border-radius:0 70px 0 0}.carTank{position:absolute;right:50px;top:202px;width:190px;height:82px;border-radius:45px;background:#2849a2;border:4px solid #9fb7ff;color:white;display:grid;place-items:center;font-weight:1000}.fillring{position:absolute;right:92px;top:102px;width:110px;height:110px;border-radius:50%;background:conic-gradient(var(--cyan) var(--fill,45%),rgba(255,255,255,.15) 0);display:grid;place-items:center;color:white;font-weight:1000}.fillring:after{content:"";position:absolute;inset:10px;border-radius:50%;background:#0b5263}.fillring b{position:relative;z-index:2;font-size:1.4rem}
@@ -481,9 +481,14 @@ img,svg{max-width:100%}
 .station-controls-v2 .control output{font-size:1rem;font-weight:950;color:#0e8da0}
 .station-controls-v2 select{min-height:48px;border-radius:14px;border:1px solid var(--line);padding:0 12px;background:#fff;color:#16384b;font-weight:700}
 .station-metricgrid-v2{gap:14px;margin-top:20px}
-.station-metric-v2{padding:18px;border-radius:20px;background:linear-gradient(180deg,#f9fdff,#f2fbfd);border:1px solid #dbeaf0;box-shadow:0 8px 18px rgba(16,70,91,.05)}
+.station-metric-v2{position:relative;padding:18px;border-radius:20px;background:linear-gradient(180deg,#f9fdff,#f2fbfd);border:1px solid #dbeaf0;box-shadow:0 8px 18px rgba(16,70,91,.05)}
 .station-metric-v2 b{font-size:1.9rem;line-height:1.05;margin-bottom:8px;word-break:break-word}
-.station-metric-v2 small{font-size:.95rem;line-height:1.45}
+.station-metric-v2 small{display:block;font-size:.95rem;line-height:1.45}
+.station-metric-v2 .metric-info{position:absolute;top:12px;right:12px;width:24px;height:24px;padding:0;border:2px solid #08788e;border-radius:50%;background:#fff;color:#075b70;font:900 .9rem/1 inherit;cursor:help;display:grid;place-items:center;transition:.2s ease}
+.station-metric-v2 .metric-info:hover,.station-metric-v2 .metric-info:focus-visible{background:#0b7890;color:#fff;box-shadow:0 0 0 4px rgba(13,165,183,.16);outline:none}
+.station-metric-v2 .metric-tooltip{position:absolute;z-index:5;top:calc(100% + 9px);right:-8px;width:220px;padding:10px 12px;border:1px solid rgba(13,165,183,.22);border-radius:12px;background:#082b3d;color:#effcff;font-size:.78rem;font-weight:700;line-height:1.45;box-shadow:0 12px 24px rgba(6,27,43,.2);opacity:0;visibility:hidden;transform:translateY(-5px);transition:opacity .18s ease,transform .18s ease,visibility .18s ease;pointer-events:none}
+.station-metric-v2 .metric-tooltip:before{content:"";position:absolute;right:10px;top:-6px;width:10px;height:10px;background:#082b3d;border-left:1px solid rgba(13,165,183,.22);border-top:1px solid rgba(13,165,183,.22);transform:rotate(45deg)}
+.station-metric-v2 .metric-info:hover + .metric-tooltip,.station-metric-v2 .metric-info:focus-visible + .metric-tooltip{opacity:1;visibility:visible;transform:translateY(0)}
 .station-panel-v2{padding:28px;border-radius:30px}
 .station-head-v2 h3{font-size:1.55rem;margin-bottom:8px}
 .station-head-v2 p{max-width:900px;color:#567285;line-height:1.65}
@@ -804,7 +809,7 @@ img,svg{max-width:100%}
 <div class="metricgrid station-metricgrid-v2">
 <div class="metric station-metric-v2"><b id="fillTime">5.4 min</b><small>Durée estimée</small></div>
 <div class="metric station-metric-v2"><b id="kgDelivered">4.6 kg</b><small>H₂ distribué</small></div>
-<div class="metric station-metric-v2"><b id="waitTime">16 min</b><small>Temps d’attente total</small></div>
+<div class="metric station-metric-v2"><b id="waitTime">16 min</b><small>Temps d’attente total <button aria-describedby="station-wait-help" aria-label="Afficher la définition du temps d’attente" class="metric-info" type="button">i</button><span class="metric-tooltip" id="station-wait-help" role="tooltip">Temps cumulé de la file : remplissage et compression entre les ravitaillements.</span></small></div>
 <div class="metric station-metric-v2"><b id="stationState">Disponible</b><small>État de la station</small></div>
 </div>
 </aside>
@@ -960,7 +965,7 @@ img,svg{max-width:100%}
 <div class="metricgrid">
 <div class="metric"><b id="fleetNeed">240 kg</b><small>Besoin quotidien</small></div>
 <div class="metric"><b id="fleetReady">10 / 10</b><small>Véhicules prêts</small></div>
-<div class="metric"><b id="fleetWait">60 min</b><small>Temps d’attente total</small></div>
+<div class="metric"><b id="fleetWait">60 min</b><small>Temps d’attente total ℹ️<span style="display:block;font-size:.78rem;color:#506d80;margin-top:3px;font-weight:700">Temps cumulé de la file (incluant la compression inter-ravitaillements)</span></small></div>
 <div class="metric"><b id="fleetUse">83 %</b><small>Taux d’utilisation de la station</small></div>
 </div>
 </aside>
@@ -1302,19 +1307,19 @@ function updateFleet(){
  $('#fleetCountOut').textContent=count;$('#fleetKmOut').textContent=km+' km';$('#fleetConsOut').textContent=fmt(cons,1)+' kg/100 km';$('#fleetH2Out').textContent=h2+' kg';$('#fleetPumpsOut').textContent=pumps;$('#fleetFillOut').textContent=fill+' min';
  const need=count*km*cons/100,ready=Math.min(count,Math.floor(h2/(km*cons/100))),blocked=count-ready,wait=Math.ceil(count/pumps)*fill,util=Math.min(100,Math.round(need/h2*100));
  $('#fleetNeed').textContent=fmt(need,0)+' kg';$('#fleetReady').textContent=ready+' / '+count;$('#fleetWait').textContent=wait+' min';$('#fleetUse').textContent=util+' %';$('#hubState').textContent=pumps+' distributeur'+(pumps>1?'s':'');$('#queueLabel').textContent=blocked+' véhicule'+(blocked>1?'s':'')+' bloqué'+(blocked>1?'s':'');
- const box=$('#vehicles');box.innerHTML='';for(let i=0;i<Math.min(count,10);i++){const d=document.createElement('div');d.className='veh '+(i>=ready?'fail':(i>=Math.max(0,ready-2)?'warn':''));d.textContent='V'+(i+1);box.appendChild(d)}
+ const box=$('#vehicles');box.innerHTML='';for(let i=0;i<Math.min(count,10);i++){const d=document.createElement('div');let st='',lbl='Prêt & alimenté (Vert)';if(i>=ready){st='fail';lbl='Bloqué / Non alimenté (Rouge)';}else if(wait>30&&i>=Math.max(0,ready-pumps)){st='warn';lbl='En attente / En charge (Orange)';}d.className='veh '+st;d.title='Véhicule '+(i+1)+' : '+lbl;d.textContent='V'+(i+1);box.appendChild(d)}
  $('#fleetExplain').textContent=blocked?'La quantité disponible ne permet pas à tous les véhicules d’accomplir leur mission. Réduisez la distance, augmentez l’approvisionnement ou priorisez certains trajets.':wait>90?'L’approvisionnement est suffisant, mais la capacité de ravitaillement génère une attente importante. Un planning échelonné ou un distributeur supplémentaire améliore la disponibilité.':'La quantité d’hydrogène et le nombre de distributeurs permettent d’organiser les départs avec une marge acceptable.';
 }
 ['fleetCount','fleetKm','fleetCons','fleetH2','fleetPumps','fleetFill'].forEach(id=>$('#'+id).addEventListener('input',updateFleet));
 
 const questions=[
- ['Un véhicule à pile à combustible est avant tout…',['Un véhicule thermique','Un véhicule électrique','Un véhicule à vapeur'],1,'✓ Exact ! Un véhicule à hydrogène est un véhicule 100 % électrique dont le courant est produit à bord par la pile à combustible à partir de l’hydrogène stocké.'],
- ['Quel est le rôle principal de la batterie tampon ?',['Fournir la puissance transitoire et récupérer l’énergie au freinage','Stocker l’ensemble de l’hydrogène liquide','Refroidir les réservoirs de la station'],0,'✓ Exact ! La batterie tampon gère les pics d’accélération et le freinage régénératif pour soulager la pile à combustible.'],
- ['Quelle situation opérationnelle est la plus favorable à une flotte hydrogène ?',['Des trajets erratiques sans station sur l’itinéraire','Une boucle fermée avec retour quotidien à un dépôt équipé','Des véhicules roulant moins de 10 km par semaine'],1,'✓ Exact ! Une flotte captive en boucle avec station au dépôt optimise l’approvisionnement et la rentabilité.'],
- ['Pourquoi une station organise-t-elle son stockage en cascade ?',['Pour décorer les installations','Pour optimiser le transfert de pression vers le véhicule sans surconsommer d’énergie','Pour purifier l’eau résiduelle'],1,'✓ Exact ! Le transfert en cascade permet d’équilibrer progressivement les pressions et de limiter l’effort du compresseur.'],
- ['Sur quels critères évaluer la pertinence d’un passage à l’hydrogène ?',['Uniquement sur la couleur du véhicule','Sur la mission (autonomie, charge utile, disponibilité) et la présence d’une infrastructure fiable','Uniquement sur la vitesse maximale'],1,'✓ Exact ! L’hydrogène est particulièrement pertinent pour les usages intensifs nécessitant un ravitaillement rapide et une forte charge utile.'],
- ['Que rassemble la cartographie des réseaux et corridors ?',['Uniquement les péages autoroutiers','La chaîne complète : hubs de production, corridors RTE-T, ports et stations','Uniquement les bornes de recharge électrique basse puissance'],1,'✓ Exact ! La carte présente les corridors stratégiques européens, reliant les pôles de production, les ports et les stations.'],
- ['Pour dimensionner une flotte, quel ratio fondamental doit-on surveiller ?',['Le rapport entre la demande journalière totale et la quantité de H₂ livrée/disponible','Le nombre de rétroviseurs par véhicule','L’âge moyen des conducteurs'],0,'✓ Exact ! La quantité journalière disponible doit toujours couvrir la consommation totale de la flotte avec une marge de sécurité.']
+ ['Un véhicule à pile à combustible est avant tout…',['Un véhicule thermique','Un véhicule électrique','Un véhicule à vapeur'],1,'Un véhicule à hydrogène est fondamentalement un véhicule électrique. La différence majeure réside dans la source d’énergie : la pile à combustible (PAC) produit l’électricité à bord en temps réel par réaction électrochimie (H₂ + O₂ → H₂O + électricité), alimentant ainsi le moteur électrique sans rejeter que de la vapeur d’eau.'],
+ ['Quel est le rôle principal de la batterie tampon ?',['Fournir la puissance transitoire et récupérer l’énergie au freinage','Stocker l’ensemble de l’hydrogène liquide','Refroidir les réservoirs de la station'],0,'La batterie tampon (ou batterie de puissance) fournit l’énergie immédiatement lors des fortes accélérations pour compenser l’inertie de la pile à combustible. Elle récupère également l’énergie cinétique lors des phases de freinage, ce qui préserve la pile à combustible et optimise le rendement global du véhicule.'],
+ ['Quelle situation opérationnelle est la plus favorable à une flotte hydrogène ?',['Des trajets erratiques sans station sur l’itinéraire','Une boucle fermée avec retour quotidien à un dépôt équipé','Des véhicules roulant moins de 10 km par semaine'],1,'Une flotte captive exploitée en boucle fermée (retour quotidien au dépôt) permet de rentabiliser rapidement une station de ravitaillement dédiée. Cela sécurise l’approvisionnement de tous les véhicules sans dépendre d’un réseau public d’avitaillement encore en cours de déploiement.'],
+ ['Pourquoi une station organise-t-elle son stockage en cascade ?',['Pour décorer les installations','Pour optimiser le transfert de pression vers le véhicule sans surconsommer d’énergie','Pour purifier l’eau résiduelle'],1,'Le stockage en cascade (composé de plusieurs réservoirs à niveaux de pression progressifs : basse, moyenne, haute) permet le transfert d’hydrogène par équilibrage naturel de pression. Cette méthode réduit fortement l’effort du compresseur durant le plein, économisant l’énergie et accélérant le remplissage.'],
+ ['Sur quels critères évaluer la pertinence d’un passage à l’hydrogène ?',['Uniquement sur la couleur du véhicule','Sur la mission (autonomie, charge utile, disponibilité) et la présence d’une infrastructure fiable','Uniquement sur la vitesse maximale'],1,'La pertinence de l’hydrogène repose sur la mise en cohérence du triptyque : la mission (longue distance, forte charge utile, fonctionnement intensif avec temps d’arrêt réduits), la disponibilité d’une station fiable et l’équilibre économique global face aux alternatives (batterie, diesel).'],
+ ['Que rassemble la cartographie des réseaux et corridors ?',['Uniquement les péages autoroutiers','La chaîne complète : hubs de production, corridors RTE-T, ports et stations','Uniquement les bornes de recharge électrique basse puissance'],1,'La cartographie stratégique européenne (corridors RTE-T, directive AFIR, Backbone H₂) rassemble l’ensemble de la chaîne de valeur : les zones de production d’hydrogène bas-carbone, les hubs portuaires, les axes routiers majeurs et le réseau de stations de ravitaillement.'],
+ ['Pour dimensionner une flotte, quel ratio fondamental doit-on surveiller ?',['Le rapport entre la demande journalière totale et la quantité de H₂ livrée/disponible','Le nombre de rétroviseurs par véhicule','L’âge moyen des conducteurs'],0,'Le ratio fondamental de dimensionnement est le bilan masse quotidien (Capacité de la station / Consommation de la flotte). La quantité de H₂ distribuée par jour doit obligatoirement couvrir 100 % des besoins de la flotte avec une marge de sécurité pour faire face aux aléas d’exploitation.']
 ];
 let quizAnswers={};
 function renderQuiz(){
@@ -1322,46 +1327,70 @@ function renderQuiz(){
  questions.forEach((item,i)=>{
    const wrap=document.createElement('div');
    wrap.className='quizQ';
-   wrap.innerHTML=`<h4>${i+1}. ${item[0]}</h4>
-     <div class="options">
-       ${item[1].map((o,j)=>`<button class="option" data-q="${i}" data-o="${j}">${o}</button>`).join('')}
-     </div>
-     <div class="feedback" id="fb${i}" style="margin-top:12px;padding:10px 14px;border-radius:12px;font-size:.9rem;display:none"></div>`;
+   wrap.id='quizCard'+i;
+   wrap.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+     <h4 style="margin:0;font-size:1.08rem;color:#08283a">${i+1}. ${item[0]}</h4>
+     <span id="badgeQ${i}" style="font-size:.78rem;font-weight:900;padding:4px 10px;border-radius:999px;background:#eef8fb;color:#5a788a">Question ${i+1}/7</span>
+   </div>
+   <div class="options" style="display:grid;gap:10px;margin-top:12px">
+     ${item[1].map((o,j)=>`<button class="option" data-q="${i}" data-o="${j}" style="display:flex;align-items:center;justify-content:space-between;border:1.5px solid var(--line);background:#f8fcfe;padding:14px 18px;border-radius:16px;text-align:left;cursor:pointer;font-weight:800;color:#24485c;transition:all .2s ease;font-size:.95rem"><span>${o}</span><span class="opt-status" style="font-size:1.1rem;opacity:.7"></span></button>`).join('')}
+   </div>
+   <div class="feedback" id="fb${i}" style="margin-top:14px;padding:16px 18px;border-radius:16px;font-size:.95rem;line-height:1.6;display:none;box-shadow:0 6px 16px rgba(0,0,0,.04)"></div>`;
    q.appendChild(wrap);
  });
+ 
  $('.option').forEach(btn=>btn.addEventListener('click',()=>{
    const qi=+btn.dataset.q, oi=+btn.dataset.o;
    quizAnswers[qi]=oi;
    const correctIdx=questions[qi][2];
    const isCorrect = (oi === correctIdx);
    
+   const card = $('#quizCard'+qi);
+   const badge = $('#badgeQ'+qi);
+   if (isCorrect) {
+     badge.textContent = '✓ Correct';
+     badge.style.background = '#e6fbf3';
+     badge.style.color = '#0e7a4a';
+   } else {
+     badge.textContent = '✕ Incorrect';
+     badge.style.background = '#fff0f3';
+     badge.style.color = '#b81d36';
+   }
+   
    btn.parentElement.querySelectorAll('.option').forEach((b,j)=>{
      b.disabled=true;
      b.style.pointerEvents='none';
+     const statusSpan = b.querySelector('.opt-status');
      if(j===correctIdx){
        b.style.background='#e6fbf3';
        b.style.borderColor='#25bf86';
-       b.style.color='#085c3b';
+       b.style.color='#064e32';
        b.style.fontWeight='950';
+       b.style.boxShadow='0 4px 14px rgba(37,191,134,.18)';
+       if (statusSpan) statusSpan.textContent = '✅';
      } else if(j===oi && !isCorrect){
        b.style.background='#fff0f3';
        b.style.borderColor='#eb5269';
        b.style.color='#7a0e20';
+       b.style.fontWeight='900';
+       if (statusSpan) statusSpan.textContent = '❌';
+     } else {
+       b.style.opacity='.55';
      }
    });
    
    const fb=$('#fb'+qi);
    fb.style.display='block';
    if(isCorrect){
-     fb.style.background='#eafaf2';
-     fb.style.color='#0a5738';
-     fb.style.border='1px solid #6dd7b2';
-     fb.innerHTML='<strong>Bonne réponse !</strong> '+questions[qi][3];
+     fb.style.background='linear-gradient(135deg,#eafaf2,#d6f7e8)';
+     fb.style.color='#064e32';
+     fb.style.border='1.5px solid #4ed6a3';
+     fb.innerHTML='<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;font-weight:950;font-size:1.02rem;color:#0e7a4a"><span style="display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#25bf86;color:#fff;font-size:.85rem">✓</span> Bonne réponse !</div><div>'+questions[qi][3]+'</div>';
    } else {
-     fb.style.background='#fff3f5';
-     fb.style.color='#841324';
-     fb.style.border='1px solid #f4a0af';
-     fb.innerHTML='<strong>Réponse incorrecte.</strong> '+questions[qi][3];
+     fb.style.background='linear-gradient(135deg,#fff3f5,#ffe4e8)';
+     fb.style.color='#7a0e20';
+     fb.style.border='1.5px solid #f498a7';
+     fb.innerHTML='<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;font-weight:950;font-size:1.02rem;color:#b81d36"><span style="display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#eb5269;color:#fff;font-size:.85rem">✕</span> Réponse incorrecte</div><div style="margin-bottom:6px">La bonne réponse était : <strong>'+questions[qi][1][correctIdx]+'</strong></div><div style="font-size:.92rem;opacity:.95">'+questions[qi][3]+'</div>';
    }
    updateQuiz();
  }));
@@ -1374,10 +1403,10 @@ function updateQuiz(){
  $('#quizMsg').textContent=totalAnswered<questions.length
    ? 'Progression : '+totalAnswered+' / '+questions.length+' question(s) répondue(s).'
    : good>=6
-     ? 'Félicitations ! Excellente maîtrise de la mobilité hydrogène.'
+     ? '🎉 Félicitations ! Excellente maîtrise de la mobilité hydrogène ('+good+'/7).'
      : good>=4
-       ? 'Les fondamentaux sont bien acquis. Vous pouvez approfondir les points spécifiques.'
-       : 'Revoyez les schémas du module pour consolider vos acquis.';
+       ? '👍 Bien joué ! Les fondamentaux de la mobilité hydrogène sont acquis ('+good+'/7).'
+       : '💡 Vous avez obtenu '+good+'/7. Prenez le temps de revoir les schémas des modules pour consolider vos acquis.';
 }
 
 route();updateVehicle();updateMission();stationMetrics();updateFleet();renderQuiz();
