@@ -88,7 +88,7 @@ h4{margin:0 0 7px;color:#0b3448}.lead{font-size:clamp(1.08rem,1.42vw,1.36rem);ma
 .depot>div:first-child{position:relative;z-index:2;margin:0!important;min-height:50px;box-sizing:border-box}
 .stationHub{position:absolute;right:44px;top:112px;width:150px;height:130px;border-radius:28px;background:#fff;color:#082235;display:grid;place-items:center;text-align:center;font-weight:950}.fleetRoad{position:absolute;left:30px;right:30px;bottom:30px;height:9px;background:#dffcff;border-radius:99px}
 .vehicles{position:absolute;left:40px;right:220px;top:112px;display:grid;grid-template-columns:repeat(5,minmax(80px,1fr));gap:14px}.veh{height:92px;border-radius:22px 28px 16px 16px;background:linear-gradient(135deg,#d5f8e9,#25bf86);border:2px solid #20a775;position:relative;display:grid;place-items:center;font-weight:1000;color:#043f29;transition:.4s}.veh:before,.veh:after{content:"";position:absolute;bottom:-12px;width:25px;height:25px;border-radius:50%;background:#071722;border:6px solid #dffcff}.veh:before{left:14px}.veh:after{right:14px}.veh.warn{background:linear-gradient(135deg,#fff4d1,#f39a32)}.veh.fail{background:linear-gradient(135deg,#ffe1e6,#eb5269)}.queue{position:absolute;right:45px;bottom:0;color:white;font-weight:950}
-.quizQ{margin:18px 0;padding:20px;border:1px solid var(--line);border-radius:22px;background:#fff}.quizQ h4{font-size:1.08rem}.options{display:grid;gap:10px;margin-top:13px}.option{border:1px solid var(--line);background:#f8fcfe;padding:12px 14px;border-radius:14px;text-align:left;cursor:pointer;font-weight:800;color:#31566a}.option.correct{background:#e6fbf3;border-color:#6dd7b2}.option.wrong{background:#fff0f3;border-color:#f4a0af}.feedback{display:none;margin-top:12px;color:#4c6a7b}.feedback.show{display:block}.scoreBox{padding:24px;border-radius:26px;background:linear-gradient(145deg,#061c2c,#0b7080);color:white;text-align:center}.scoreBox b{font-size:3rem;display:block}
+.quizQ{margin:18px 0;padding:22px;border:1px solid var(--line);border-radius:24px;background:#fff;box-shadow:var(--shadow2)}.quizQ h4{font-size:1.08rem;color:#17384a}.options{display:grid;gap:0;margin-top:12px}.option{display:block;width:100%;border:1px solid var(--line);background:#f8fcfd;border-radius:16px;padding:14px 16px;margin:8px 0;text-align:left;cursor:pointer;font-weight:760;color:#17384a;transition:.18s}.option:hover:not(:disabled){border-color:var(--cyan)}.option:disabled{cursor:default}.option.correct{background:#e7fbf2;border-color:var(--green)}.option.wrong{background:#fff0ef;border-color:var(--red)}.feedback{display:none;margin-top:12px;padding:14px 16px;border-radius:14px;background:#eff9fc;color:#244c61;line-height:1.5}.feedback.show{display:block}.scoreBox{padding:24px;border-radius:26px;background:linear-gradient(145deg,#061c2c,#0b7080);color:white;text-align:center}.scoreBox b{font-size:3rem;display:block}
 .resources a{display:flex;justify-content:space-between;gap:12px;padding:16px 18px;background:#fff;border:1px solid var(--line);border-radius:18px;text-decoration:none;font-weight:900}.resources{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
 .footerNav{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:34px}
 @media(max-width:1320px){
@@ -1014,7 +1014,7 @@ img,svg{max-width:100%}
 <div id="quiz"></div>
 </div>
 <div>
-<div class="scoreBox"><small>Score</small><b id="quizScore">0 / 7</b><span id="quizMsg">Répondez aux sept questions.</span></div>
+<div class="scoreBox"><small>Score</small><b aria-live="polite" id="quizScore">0 / 7</b><span aria-live="polite" id="quizMsg">Répondez aux sept questions.</span></div>
 <div class="panel" style="margin-top:20px">
 <h3>Ressources</h3>
 <div class="resources">
@@ -1335,52 +1335,35 @@ function renderQuiz(){
    const wrap=document.createElement('div');
    wrap.className='quizQ';
    wrap.id='quizCard'+i;
-   wrap.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-     <h4 style="margin:0;font-size:1.08rem;color:#08283a">${i+1}. ${item[0]}</h4>
-     <span id="badgeQ${i}" style="font-size:.78rem;font-weight:900;padding:4px 10px;border-radius:999px;background:#eef8fb;color:#5a788a">Question ${i+1}/7</span>
+   wrap.innerHTML=`<h4>${i+1}. ${item[0]}</h4>
+   <div class="options">
+     ${item[1].map((o,j)=>`<button class="option" data-q="${i}" data-o="${j}">${o}</button>`).join('')}
    </div>
-   <div class="options" style="display:grid;gap:10px;margin-top:12px">
-     ${item[1].map((o,j)=>`<button class="option" data-q="${i}" data-o="${j}" style="display:flex;align-items:center;justify-content:space-between;border:1.5px solid var(--line);background:#f8fcfe;padding:14px 18px;border-radius:16px;text-align:left;cursor:pointer;font-weight:800;color:#24485c;transition:all .2s ease;font-size:.95rem"><span>${o}</span><span class="opt-status" style="font-size:1.1rem;opacity:.7"></span></button>`).join('')}
-   </div>
-   <div class="feedback" id="fb${i}" style="margin-top:14px;padding:16px 18px;border-radius:16px;font-size:.95rem;line-height:1.6;display:none;box-shadow:0 6px 16px rgba(0,0,0,.04)"></div>`;
+   <div class="feedback" id="fb${i}"></div>`;
    q.appendChild(wrap);
  });
  
- $('.option').forEach(btn=>btn.addEventListener('click',()=>{
+ $$('.option').forEach(btn=>btn.addEventListener('click',()=>{
    const qi=+btn.dataset.q, oi=+btn.dataset.o;
    quizAnswers[qi]=oi;
    const correctIdx=questions[qi][2];
    const isCorrect = (oi === correctIdx);
    
    const card = $('#quizCard'+qi);
-   const badge = $('#badgeQ'+qi);
-   if (isCorrect) {
-     badge.textContent = '✓ Correct';
-     badge.style.background = '#e6fbf3';
-     badge.style.color = '#0e7a4a';
-   } else {
-     badge.textContent = '✕ Incorrect';
-     badge.style.background = '#fff0f3';
-     badge.style.color = '#b81d36';
-   }
-   
    btn.parentElement.querySelectorAll('.option').forEach((b,j)=>{
      b.disabled=true;
      b.style.pointerEvents='none';
-     const statusSpan = b.querySelector('.opt-status');
      if(j===correctIdx){
        b.style.background='#e6fbf3';
        b.style.borderColor='#25bf86';
        b.style.color='#064e32';
        b.style.fontWeight='950';
        b.style.boxShadow='0 4px 14px rgba(37,191,134,.18)';
-       if (statusSpan) statusSpan.textContent = '✅';
      } else if(j===oi && !isCorrect){
        b.style.background='#fff0f3';
        b.style.borderColor='#eb5269';
        b.style.color='#7a0e20';
        b.style.fontWeight='900';
-       if (statusSpan) statusSpan.textContent = '❌';
      } else {
        b.style.opacity='.55';
      }
@@ -1388,25 +1371,17 @@ function renderQuiz(){
    
    const fb=$('#fb'+qi);
    fb.style.display='block';
-   if(isCorrect){
-     fb.style.background='linear-gradient(135deg,#eafaf2,#d6f7e8)';
-     fb.style.color='#064e32';
-     fb.style.border='1.5px solid #4ed6a3';
-     fb.innerHTML='<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;font-weight:950;font-size:1.02rem;color:#0e7a4a"><span style="display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#25bf86;color:#fff;font-size:.85rem">✓</span> Bonne réponse !</div><div>'+questions[qi][3]+'</div>';
-   } else {
-     fb.style.background='linear-gradient(135deg,#fff3f5,#ffe4e8)';
-     fb.style.color='#7a0e20';
-     fb.style.border='1.5px solid #f498a7';
-     fb.innerHTML='<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;font-weight:950;font-size:1.02rem;color:#b81d36"><span style="display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#eb5269;color:#fff;font-size:.85rem">✕</span> Réponse incorrecte</div><div style="margin-bottom:6px">La bonne réponse était : <strong>'+questions[qi][1][correctIdx]+'</strong></div><div style="font-size:.92rem;opacity:.95">'+questions[qi][3]+'</div>';
-   }
+   fb.textContent=(isCorrect?'':'Bonne réponse : '+questions[qi][1][correctIdx]+' — ')+questions[qi][3];
    updateQuiz();
  }));
 }
 function updateQuiz(){
- let good=0;
- Object.entries(quizAnswers).forEach(([i,o])=>{if(+o===questions[+i][2])good++});
+ const answeredIndices=Object.keys(quizAnswers);
+ const good=answeredIndices.reduce((score,questionIndex)=>{
+   return score+(Number(quizAnswers[questionIndex])===questions[Number(questionIndex)][2]?1:0);
+ },0);
+ const totalAnswered=answeredIndices.length;
  $('#quizScore').textContent=good+' / '+questions.length;
- const totalAnswered=Object.keys(quizAnswers).length;
  $('#quizMsg').textContent=totalAnswered<questions.length
    ? 'Progression : '+totalAnswered+' / '+questions.length+' question(s) répondue(s).'
    : good>=6
