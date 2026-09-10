@@ -611,6 +611,10 @@
       box-shadow: 0 18px 50px rgba(0, 0, 0, .16)
     }
 
+    .mt {
+      margin-top: 24px
+    }
+
     .orb-card strong {
       display: block;
       font-size: 1.08rem;
@@ -4420,8 +4424,7 @@
                     liés.</span></button>
                 <button class="pill" data-info="carrier"><strong>Vecteur</strong><span>Stocke et transporte
                     l’énergie.</span></button>
-                <button class="pill" data-info="rare"><strong>Présence naturelle</strong><span>Rarement présent à l’état
-                    libre sur Terre.</span></button>
+                <button class="pill" data-info="rare"><strong>Présence naturelle</strong><span>Produit par électrolyse, vaporeformage ou biomasse.</span></button>
               </div>
               <div class="reveal show" id="pillReveal">L’atome H est très simple, mais les systèmes hydrogène utilisent
                 la molécule H₂.</div>
@@ -4442,20 +4445,20 @@
                     </femerge>
                   </filter>
                 </defs>
-                <path d="M110 84 C230 24 490 24 610 84" fill="none" opacity=".35" stroke="#20c5d5" stroke-width="3">
-                </path>
-                <path d="M130 350 C245 412 475 412 590 350" fill="none" opacity=".35" stroke="#20c5d5" stroke-width="3">
-                </path>
-                <line opacity=".8" stroke="#082236" stroke-linecap="round" stroke-width="18" x1="300" x2="420" y1="220"
-                  y2="220"></line>
-                <circle cx="240" cy="220" fill="url(#atom)" filter="url(#glow)" r="96"></circle>
-                <circle cx="480" cy="220" fill="url(#atom)" filter="url(#glow)" r="96"></circle>
-                <text fill="white" font-size="84" font-weight="950" text-anchor="middle" x="240" y="246">H</text><text
-                  fill="white" font-size="84" font-weight="950" text-anchor="middle" x="480" y="246">H</text><text
-                  fill="#082236" font-size="58" font-weight="950" text-anchor="middle" x="360" y="390">H₂</text>
-                <g class="electron">
-                  <circle cx="170" cy="145" fill="#071c2b" r="8"></circle>
-                  <circle cx="550" cy="295" fill="#071c2b" r="8"></circle>
+                <!-- Orbites électroniques propres à chaque atome -->
+                <circle cx="240" cy="220" r="110" fill="none" stroke="#20c5d5" stroke-width="2.5" stroke-dasharray="6 6" opacity=".55"></circle>
+                <circle cx="480" cy="220" r="110" fill="none" stroke="#20c5d5" stroke-width="2.5" stroke-dasharray="6 6" opacity=".55"></circle>
+                <!-- Zone de mise en commun de la liaison covalente -->
+                <line opacity=".8" stroke="#082236" stroke-linecap="round" stroke-width="16" x1="300" x2="420" y1="220" y2="220"></line>
+                <circle cx="240" cy="220" fill="url(#atom)" filter="url(#glow)" r="92"></circle>
+                <circle cx="480" cy="220" fill="url(#atom)" filter="url(#glow)" r="92"></circle>
+                <text fill="white" font-size="80" font-weight="950" text-anchor="middle" x="240" y="246">H</text>
+                <text fill="white" font-size="80" font-weight="950" text-anchor="middle" x="480" y="246">H</text>
+                <text fill="#082236" font-size="52" font-weight="950" text-anchor="middle" x="360" y="395">H₂</text>
+                <!-- Électrons gravitant autour de chaque atome et partagés -->
+                <g>
+                  <circle cx="150" cy="155" fill="#071c2b" r="8"><animateTransform attributeName="transform" type="rotate" from="0 240 220" to="360 240 220" dur="5s" repeatCount="indefinite"/></circle>
+                  <circle cx="570" cy="285" fill="#071c2b" r="8"><animateTransform attributeName="transform" type="rotate" from="0 480 220" to="360 480 220" dur="5s" repeatCount="indefinite"/></circle>
                 </g>
               </svg>
             </div>
@@ -4586,22 +4589,12 @@
               </div>
             </aside>
           </div>
-          <div class="video-inline" id="prop-video-link">
-            <div class="video-callout">
-              <div aria-hidden="true" class="video-mark"></div>
-              <div>
-                <h4>Ressource complémentaire : propriétés et applications</h4>
-                <p>Cette ressource peut être ouverte après la comparaison afin de replacer les propriétés physiques dans
-                  le contexte de la transition énergétique.</p>
-              </div><a class="video-open" href="https://www.france-hydrogene.org/lhydrogene-explique-a-tous/"
-                rel="noopener" target="_blank">Ouvrir la ressource <small>↗</small></a>
-            </div>
-          </div>
+
           <article aria-label="Schéma comparatif hydrogène, diesel et batterie" class="ref-visual">
             <h3>Schéma de référence : comparaison du H₂ avec d’autres solutions</h3>
             <p>La trame du cours comprend une comparaison visuelle entre l’hydrogène, un carburant liquide ou gazeux et
               une batterie. Elle prépare l’activité sur la pression de stockage en montrant que l’hydrogène est très
-              performant en masse mais pose des contraintes de stockage et de transport.</p>
+              performant en masse (120 MJ/kg) mais présente une masse volumique extrêmement faible à pression ambiante : <strong>environ 90 g/m³ (89,88 g/m³ à 0 °C, 1 atm)</strong>, soit 11 fois moins dense que l'air ! C'est pourquoi la compression à 350 ou 700 bar est indispensable pour stocker une énergie suffisante dans un volume restreint.</p>
             <img
               alt="Comparatif en français entre hydrogène, diesel/GPL et batterie : stockage, densité énergétique, transport, durée de vie et empreinte carbone"
               class="ref-image"
@@ -4609,7 +4602,17 @@
             <div class="ref-caption">Visuel intégré à la séquence Propriétés : densité énergétique, stockage et
               contraintes d’exploitation.</div>
           </article>
-          <div class="grid two">
+          <div class="video-inline" id="prop-video-link">
+            <div class="video-callout">
+              <div aria-hidden="true" class="video-mark"></div>
+              <div>
+                <h4>Ressource complémentaire : France Hydrogène — Guide « L’hydrogène expliqué à tous »</h4>
+                <p>Consultez la rubrique dédiée de <strong>France Hydrogène</strong> pour replacer les propriétés physiques de la molécule et ses modes de production dans le contexte de la transition énergétique.</p>
+              </div><a class="video-open" href="https://www.france-hydrogene.org/lhydrogene-explique-a-tous/"
+                rel="noopener" target="_blank">Consulter la ressource France Hydrogène <small>↗</small></a>
+            </div>
+          </div>
+          <div class="grid two mt">
             <article class="panel">
               <div class="kicker">Comparaison rapide</div>
               <h3>Principaux avantages et contraintes</h3>
@@ -4706,10 +4709,9 @@
                   </lineargradient>
                 </defs>
                 <text fill="#083247" font-size="28" font-weight="900" text-anchor="middle" x="410" y="24">Production de
-                  H₂ par électrolyse</text>
-                <rect fill="#ffffff" height="68" rx="20" stroke="#bfeaf1" width="410" x="205" y="32"></rect>
+                  H₂ par électrolyse</text>      
                 <text fill="#082235" font-size="28" font-weight="900" text-anchor="middle" dominant-baseline="middle"
-                  x="410" y="66">2 H₂O(l) → 2 H₂(g) + O₂(g)</text>
+                  x="410" y="66">2 H₂O(l) + Électricité → 2 H₂(g) + O₂(g) + Chaleur</text>
                 <rect fill="url(#water)" height="220" rx="38" stroke="#087b92" stroke-width="3" width="450" x="185"
                   y="184"></rect>
                 <rect fill="#eefcff" height="238" rx="34" stroke="#0ba5b7" stroke-width="3" width="86" x="244" y="150">
@@ -4767,7 +4769,7 @@
               <h3>Tension, conductivité et rendement</h3>
               <p>Réglez la tension et la conductivité. Les bulles, le débit estimé, la consommation d’énergie et le
                 rendement visuel évoluent en temps réel.</p>
-              <div class="reaction">2 H₂O(l) → 2 H₂(g) + O₂(g)</div>
+              <div class="reaction">2 H₂O(l) + Électricité → 2 H₂(g) + O₂(g) + Chaleur</div>
               <div class="control"><label>Tension appliquée <output id="voltOut">3,0 V</output></label><input
                   class="range" id="volt" max="8" min="0" step="0.1" type="range" value="3" /></div>
               <div class="control"><label>Conductivité de l’électrolyte <output id="conductOut">60
@@ -5009,8 +5011,9 @@
 
           <div class="panel">
             <div class="tab-panel active" id="tp44">
-              <h3>TP 44 : volume molaire</h3>
-              <p>Objectif : vérifier le volume molaire d’un gaz et utiliser la loi des gaz parfaits. Le dihydrogène peut
+              <h3>Atelier expérimental 1 (Réf. TP 44) : Détermination du volume molaire</h3>
+              <p><strong>Contexte et consignes :</strong> Les fiches de travaux pratiques sont indexées selon le référentiel national (TP 44 et TP 68). L'objectif de cette manipulation est de mesurer expérimentalement le volume molaire d’un gaz
+                 et de vérifier la loi des gaz parfaits. Le dihydrogène est généré en faisant réagir un ruban de magnésium avec une solution d’acide chlorhydrique dosée, puis recueilli par déplacement d'eau dans une éprouvette graduée. et utiliser la loi des gaz parfaits. Le dihydrogène peut
                 être produit en faisant réagir un métal comme le magnésium avec de l’acide chlorhydrique.</p>
               <div class="schema-grid">
                 <div class="schema-card">
@@ -5068,7 +5071,7 @@
               </div>
             </div>
             <div class="tab-panel" id="tp68">
-              <h3>TP 68 : électrolyse de l’eau</h3>
+              <h3>Atelier expérimental 2 (Réf. TP 68) : Électrolyse de l’eau et rendement</h3>
               <p>Objectif : produire du dihydrogène à partir de l’eau et déterminer le rendement de l’électrolyseur.
                 L’expérience montre qu’une tension minimale est nécessaire et que toute l’énergie consommée n’est pas
                 convertie en énergie utile.</p>
@@ -5312,7 +5315,7 @@
       function getRoute() { const r = (location.hash || '#/').replace('#', ''); return routes.includes(r) ? r : '/' }
       function render() { const r = getRoute(); views.forEach(v => v.classList.toggle('active', v.dataset.route === r)); links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + r)); progress.style.width = ((routes.indexOf(r) + 1) / routes.length * 100) + '%'; navLinks.classList.remove('open'); menuBtn?.setAttribute('aria-expanded', 'false'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
       window.addEventListener('hashchange', render); render(); menuBtn?.addEventListener('click', () => { const open = navLinks.classList.toggle('open'); menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false') });
-      const pillText = { atom: 'L’atome d’hydrogène possède un proton et un électron. Sa structure simple en fait une référence utile pour plusieurs notions de chimie.', molecule: 'Deux atomes H peuvent partager des électrons pour former H₂, une molécule stable utilisée dans les systèmes énergétiques.', carrier: 'Le H₂ est un vecteur énergétique : il stocke une énergie produite auparavant et peut la restituer ultérieurement dans un autre contexte.', rare: 'Sur Terre, l’hydrogène est principalement lié dans l’eau ou les hydrocarbures et doit donc être produit.' }; document.querySelectorAll('.pill').forEach(btn => btn.addEventListener('click', () => { document.querySelectorAll('.pill').forEach(b => b.classList.remove('active')); btn.classList.add('active'); const box = document.getElementById('pillReveal'); box.textContent = pillText[btn.dataset.info]; box.classList.add('show') }));
+      const pillText = { atom: 'L’atome d’hydrogène possède un proton et un électron. Sa structure simple en fait une référence utile pour plusieurs notions de chimie.', molecule: 'Deux atomes H partagent chacun leur électron périphérique (les électrons tournent autour de leur noyau respectif et sont mis en commun au centre) pour former H₂, une liaison covalente stable.', carrier: 'Le H₂ est un vecteur énergétique : il stocke une énergie produite auparavant et peut la restituer ultérieurement dans un autre contexte.', rare: 'Sur Terre, l’hydrogène n’existe quasiment pas à l’état pur : il doit être produit par électrolyse de l’eau, ou extrait par vaporeformage d’hydrocarbures ou valorisation de la biomasse.' }; document.querySelectorAll('.pill').forEach(btn => btn.addEventListener('click', () => { document.querySelectorAll('.pill').forEach(b => b.classList.remove('active')); btn.classList.add('active'); const box = document.getElementById('pillReveal'); box.textContent = pillText[btn.dataset.info]; box.classList.add('show') }));
       const pressure = document.getElementById('pressure'); function updatePressure() { if (!pressure) return; const p = +pressure.value; document.getElementById('pressureOut').textContent = p + ' bar'; const vol = 100 / p; const stress = Math.round(Math.pow(p / 700, 1.35) * 100); const fill = Math.min(100, Math.max(10, p / 700 * 100)); const usage = p < 50 ? 'Stockage basse pression' : p < 250 ? 'Logistique' : p < 500 ? 'Mobilité' : 'Haute pression'; document.getElementById('volumeIndex').textContent = vol < 1 ? vol.toFixed(1).replace('.', ',') : Math.round(vol); document.getElementById('constraintIndex').textContent = stress; document.getElementById('usageIndex').textContent = usage; document.getElementById('pressureGauge').style.width = Math.min(100, p / 7) + '%'; document.getElementById('tankFill').style.width = fill + '%'; document.getElementById('tankLabel').textContent = p + ' bar'; document.getElementById('tankVol').textContent = p < 50 ? 'Large volume' : p < 250 ? 'Volume réduit' : p < 500 ? 'Compact volume' : 'Volume très compact'; document.getElementById('tankSécurité').textContent = stress < 35 ? 'Contrainte modérée' : stress < 70 ? 'Réservoir renforcé' : 'Contrôle renforcé'; document.getElementById('tankUse').textContent = usage; document.getElementById('barVolume').style.width = Math.min(100, 100 - vol) + '%'; document.getElementById('barStress').style.width = stress + '%'; document.getElementById('barVolumeText').textContent = Math.round(Math.min(100, 100 - vol)) + '%'; document.getElementById('barStressText').textContent = stress + '%'; document.getElementById('pressureExpliquer').innerHTML = p < 50 ? '<span class="status-tag">Low pressure</span><br>Storage remains bulky and is mainly suited to demonstrations or stationary storage.' : p < 250 ? '<span class="status-tag">Useful compression</span><br>Le volume diminue de manière significative, mais les contraintes techniques commencent à devenir décisives.' : p < 500 ? '<span class="status-tag">Compression utile</span><br>Le volume diminue de manière significative, mais les contraintes techniques commencent à devenir déterminante.' : '<span class="status-tag">Haute pression</span><br>Le volume est fortement réduit, mais la sécurité, les matériaux et le coût deviennent des facteurs majeurs.'; } pressure?.addEventListener('input', updatePressure); updatePressure();
       const volt = document.getElementById('volt'), conduct = document.getElementById('conduct'), stage = document.getElementById('electroStage'); function updateElectro() { if (!volt || !conduct) return; const v = +volt.value, c = +conduct.value; document.getElementById('voltOut').textContent = v.toFixed(1).replace('.', ',') + ' V'; document.getElementById('conductOut').textContent = Math.round(c) + ' %'; const threshold = 1.23; const active = v > threshold && c > 8; stage.classList.toggle('electro-on', active); const current = active ? Math.max(0, (v - threshold)) * c / 100 : 0; const h2 = current * 7.2; const energy = v * current * 8; const eff = active ? Math.max(8, Math.min(78, 72 - (v - 2.2) * 6 + (c - 50) * .08)) : 0; document.getElementById('h2Rate').textContent = h2.toFixed(1).replace('.', ','); document.getElementById('energyRate').textContent = Math.round(energy); document.getElementById('efficiency').textContent = Math.round(eff) + '%'; document.getElementById('effRing').style.background = `conic-gradient(var(--cyan) ${eff * 3.6}deg,#dceff3 0deg)`; document.getElementById('effRingText').textContent = Math.round(eff) + '%'; stage.style.setProperty('--speed', Math.max(.55, 2.6 - current / 2) + 's'); document.getElementById('batteryLabel').textContent = active ? 'Active production' : 'Tension insuffisante'; document.getElementById('electroExpliquer').innerHTML = !active ? '<span class="status-tag">Aucune production visible</span><br>La tension ou la conductivité est trop faible : les bulles ne sont pas encore apparues.' : '<span class="status-tag">Production active</span><br>Le débit augmente avec la tension et la conductivité, mais la consommation d’énergie augmente également. Le rendement n’est donc jamais parfait.'; } volt?.addEventListener('input', updateElectro); conduct?.addEventListener('input', updateElectro); updateElectro();
       const mix = document.getElementById('mix'), ventBtn = document.getElementById('ventBtn'); let ventilation = false;
@@ -5346,21 +5349,21 @@
         document.querySelectorAll('.h2-particle').forEach((p, idx) => { p.style.setProperty('--op', String(Math.min(.92, .14 + density * .86))); p.style.setProperty('--sc', (0.55 + density * 1.15).toFixed(2)); p.style.setProperty('--dur', Math.max(2.4, 7 - density * 3.4).toFixed(2) + 's'); });
         let stateClass = 'safe', label = 'Faible', danger = .08, state;
         if (val < 4) {
-          state = ['Mixture too lean', 'La concentration est inférieure à la limite basse d’inflammabilité. Dans un espace ouvert, le risque d’ignition est limité, mais une fuite doit tout de même être identifiée.', 'Low'];
+          state = ['Mélange trop pauvre', 'La concentration est inférieure à la limite basse d’inflammabilité (LII 4 %). Dans un espace ouvert, le risque d’ignition est limité, mais une fuite doit tout de même être identifiée.', 'Faible'];
           stateClass = 'safe'; danger = .05;
         } else if (val <= 75) {
           const intensity = .35 + Math.min(1, (val - 4) / 44) * .65;
-          state = ['Plage d’inflammabilité', 'Le mélange H₂ / air se situe dans la plage inflammable. Une source d’ignition peut provoquer une combustion rapide.', val > 35 ? 'Critical' : 'Elevé'];
+          state = ['Plage d’inflammabilité', 'Le mélange H₂ / air se situe dans la plage inflammable. Une source d’ignition peut provoquer une combustion rapide.', val > 35 ? 'Critique' : 'Elevé'];
           stateClass = 'inflammable'; danger = intensity;
         } else {
-          state = ['Mélange trop riche', 'La concentration est supérieure à la plage d’inflammabilité dans l’air. Le danger peut réapparaître si de l’oxygène est réintroduit ou si le mélange est partiellement dilué.', 'Unstable'];
+          state = ['Mélange trop riche', 'La concentration est supérieure à la plage d’inflammabilité dans l’air. Le danger peut réapparaître si de l’oxygène est réintroduit ou si le mélange est partiellement dilué.', 'Instable'];
           stateClass = 'rich'; danger = .32;
         }
         riskStage?.classList.remove('safe', 'inflammable', 'rich');
         riskStage?.classList.add(stateClass);
         riskStage?.style.setProperty('--danger', danger.toFixed(2));
         title.textContent = state[0]; txt.textContent = state[1]; level.textContent = state[2];
-        status.innerHTML = `<span class="status-tag">${state[0]}</span><br>${state[1]}${ventilation ? '<br><strong>Ventilation active:</strong> the calculated concentration is reduced and particles are drawn towards extraction.' : ''}`;
+        status.innerHTML = `<span class="status-tag">${state[0]}</span><br>${state[1]}${ventilation ? '<br><strong>Ventilation active :</strong> la concentration calculée est réduite et les particules sont évacuées vers l’extraction.' : ''}`;
       }
       mix?.addEventListener('input', updateMix); ventBtn?.addEventListener('click', () => { ventilation = !ventilation; ventBtn.classList.toggle('active', ventilation); ventBtn.textContent = ventilation ? 'Ventilation on' : 'Activer la ventilation'; updateMix() }); updateMix();
       const fragments = document.getElementById('fragments');
@@ -5378,13 +5381,13 @@
       document.getElementById('boomBtn')?.addEventListener('click', () => {
         const demo = document.getElementById('demo'), state = document.getElementById('demoState'), time = document.getElementById('demoTime');
         demo.classList.remove('boom'); void demo.offsetWidth; demo.classList.add('boom');
-        if (state) state.textContent = 'Instant ignition'; if (time) time.textContent = '< 100 ms';
-        setTimeout(() => { if (state) state.textContent = 'Shock wave dissipated'; if (time) time.textContent = '900 ms' }, 850);
-        setTimeout(() => { demo.classList.remove('boom'); if (state) state.textContent = 'Bubble re-formed'; if (time) time.textContent = '0 ms' }, 2100);
+        if (state) state.textContent = 'Ignition instantanée'; if (time) time.textContent = '< 100 ms';
+        setTimeout(() => { if (state) state.textContent = 'Vague de choc dissipée'; if (time) time.textContent = '900 ms' }, 850);
+        setTimeout(() => { demo.classList.remove('boom'); if (state) state.textContent = 'La bulle s’est reformée'; if (time) time.textContent = '0 ms' }, 2100);
       });
       document.querySelectorAll('.acc-head').forEach(btn => btn.addEventListener('click', () => { const item = btn.closest('.acc-item'); const open = item.classList.toggle('open'); btn.querySelector('span').textContent = open ? '−' : '+' }));
       document.querySelectorAll('.tabbtn').forEach(btn => btn.addEventListener('click', () => { document.querySelectorAll('.tabbtn').forEach(b => b.classList.remove('active')); document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active')); btn.classList.add('active'); document.getElementById(btn.dataset.tab).classList.add('active') }));
-      const questions = [{ q: 'Pourquoi H2 est-il décrit comme un vecteur énergétique ?', a: ['Parce qu’il existe librement dans l’air', 'Parce qu’il stocke et transporte une énergie produite auparavant', 'Parce qu’il produit naturellement de l’électricité'], ok: 1, exp: 'Le H₂ n’est pas une source d’énergie primaire : il doit être produit avant d’être utilisé.' }, { q: 'Quelle réaction représente l’électrolyse de l’eau ?', a: ['2 H₂O → 2 H₂ + O₂', 'H₂ + O₂ → CO₂', 'CH₄ → H₂O + O₂'], ok: 0, exp: 'L’électrolyse dissocie l’eau en dihydrogène et en oxygène.' }, { q: 'Quel est un défi majeur du stockage du H₂ ?', a: ['Sa très faible densité volumique', 'Sa couleur bleue', 'Sa masse excessive'], ok: 0, exp: 'À pression ambiante, le H₂ occupe un grand volume, c’est pourquoi il est comprimé.' }, { q: 'Quelle plage d’inflammabilité du H₂ dans l’air est utilisée dans ce module ?', a: ['1 à 5%', '4 à 75%', '80 à 100%'], ok: 1, exp: 'La plage est large : environ 4 à 75 % dans l’air.' }, { q: 'Pourquoi un capteur est-il nécessaire ?', a: ['Parce que la flamme est toujours rouge', 'Parce que le H₂ est incolore et inodore, et que sa flamme peut être difficile à voir', 'Parce que le H₂ est solide à température ambiante'], ok: 1, exp: 'La détection ne peut pas reposer sur les sens humains.' }]; const quiz = document.getElementById('quiz'); const scoreBox = document.getElementById('scoreBox'); let answered = {}; function buildQuiz() { if (!quiz) return; quiz.innerHTML = ''; questions.forEach((qu, i) => { const wrap = document.createElement('div'); wrap.className = 'quiz-card'; wrap.innerHTML = `<h4>Question ${i + 1}</h4><p><strong>${qu.q}</strong></p>`; qu.a.forEach((ans, j) => { const b = document.createElement('button'); b.className = 'answer'; b.textContent = ans; b.addEventListener('click', () => answer(i, j, wrap)); wrap.appendChild(b) }); const exp = document.createElement('div'); exp.className = 'explain'; exp.textContent = qu.exp; wrap.appendChild(exp); quiz.appendChild(wrap) }); } function answer(i, j, wrap) { if (answered[i] !== undefined) return; answered[i] = j; const qu = questions[i]; wrap.querySelectorAll('.answer').forEach((b, k) => { b.disabled = true; if (k === qu.ok) b.classList.add('correct'); if (k === j && j !== qu.ok) b.classList.add('wrong') }); wrap.querySelector('.explain').classList.add('show'); if (Object.keys(answered).length === questions.length) showScore() } function showScore() { const score = questions.reduce((s, q, i) => s + (answered[i] === q.ok ? 1 : 0), 0); scoreBox.classList.add('show'); scoreBox.innerHTML = `<h3>Score : ${score} / ${questions.length}</h3><p>${score >= 4 ? 'The fundamentals are understood. You can move on to producing the poster.' : 'Revoyez les séquences liées aux réponses incorrectes avant de préparer l’affiche.'}</p>`; } buildQuiz();
+      const questions = [{ q: 'Pourquoi H2 est-il décrit comme un vecteur énergétique ?', a: ['Parce qu’il existe librement dans l’air', 'Parce qu’il stocke et transporte une énergie produite auparavant', 'Parce qu’il produit naturellement de l’électricité'], ok: 1, exp: 'Le H₂ n’est pas une source d’énergie primaire : il doit être produit avant d’être utilisé.' }, { q: 'Quelle réaction représente l’électrolyse de l’eau ?', a: ['2 H₂O → 2 H₂ + O₂', 'H₂ + O₂ → CO₂', 'CH₄ → H₂O + O₂'], ok: 0, exp: 'L’électrolyse dissocie l’eau en dihydrogène et en oxygène.' }, { q: 'Quel est un défi majeur du stockage du H₂ ?', a: ['Sa très faible densité volumique', 'Sa couleur bleue', 'Sa masse excessive'], ok: 0, exp: 'À pression ambiante, le H₂ occupe un grand volume, c’est pourquoi il est comprimé.' }, { q: 'Quelle plage d’inflammabilité du H₂ dans l’air est utilisée dans ce module ?', a: ['1 à 5%', '4 à 75%', '80 à 100%'], ok: 1, exp: 'La plage est large : environ 4 à 75 % dans l’air.' }, { q: 'Pourquoi un capteur est-il nécessaire ?', a: ['Parce que la flamme est toujours rouge', 'Parce que le H₂ est incolore et inodore, et que sa flamme peut être difficile à voir', 'Parce que le H₂ est solide à température ambiante'], ok: 1, exp: 'La détection ne peut pas reposer sur les sens humains.' }]; const quiz = document.getElementById('quiz'); const scoreBox = document.getElementById('scoreBox'); let answered = {}; function buildQuiz() { if (!quiz) return; quiz.innerHTML = ''; questions.forEach((qu, i) => { const wrap = document.createElement('div'); wrap.className = 'quiz-card'; wrap.innerHTML = `<h4>Question ${i + 1}</h4><p><strong>${qu.q}</strong></p>`; qu.a.forEach((ans, j) => { const b = document.createElement('button'); b.className = 'answer'; b.textContent = ans; b.addEventListener('click', () => answer(i, j, wrap)); wrap.appendChild(b) }); const exp = document.createElement('div'); exp.className = 'explain'; exp.textContent = qu.exp; wrap.appendChild(exp); quiz.appendChild(wrap) }); } function answer(i, j, wrap) { if (answered[i] !== undefined) return; answered[i] = j; const qu = questions[i]; wrap.querySelectorAll('.answer').forEach((b, k) => { b.disabled = true; if (k === qu.ok) b.classList.add('correct'); if (k === j && j !== qu.ok) b.classList.add('wrong') }); wrap.querySelector('.explain').classList.add('show'); if (Object.keys(answered).length === questions.length) showScore() } function showScore() { const score = questions.reduce((s, q, i) => s + (answered[i] === q.ok ? 1 : 0), 0); scoreBox.classList.add('show'); scoreBox.innerHTML = `<h3>Score : ${score} / ${questions.length}</h3><p>${score >= 4 ? 'Les fondamentaux sont acquis. Vous pouvez passer à la réalisation du poster de synthèse.' : 'Revoyez les séquences liées aux réponses incorrectes avant de préparer l’affiche.'}</p>`; } buildQuiz();
     })();
 
     const lightbox = document.getElementById('lightbox');
