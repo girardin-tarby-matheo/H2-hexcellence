@@ -1049,6 +1049,14 @@ function bindPolarInteractions(){
 }
 
 function setLangButtons(){qsa('.lang-btn').forEach(btn=>{btn.classList.toggle('active',btn.dataset.lang===currentLang);btn.setAttribute('aria-pressed',btn.dataset.lang===currentLang?'true':'false');btn.onclick=()=>switchLang(btn.dataset.lang);});}
+function cleanPlatinumFocus(){
+  const focus=qsa('details').find(detail=>detail.textContent.includes('Focus matériaux'));
+  if(!focus) return;
+  focus.querySelectorAll('strong').forEach(strong=>strong.replaceWith(...strong.childNodes));
+  const walker=document.createTreeWalker(focus,NodeFilter.SHOW_TEXT);
+  let node;
+  while(node=walker.nextNode()) node.nodeValue=node.nodeValue.replace(/•\s*/g,'');
+}
 function renderLanguage(lang){
   currentLang=lang; quizData=quizSets[lang]; quizRendered=false; score=0; answered=0; pac.particles=[];
   document.documentElement.lang = lang==='fr' ? 'fr' : 'en';
@@ -1056,6 +1064,7 @@ function renderLanguage(lang){
   qs('#app').innerHTML = templates[lang];
   const languageSwitch = qs('.lang-switch');
   if(languageSwitch) languageSwitch.remove();
+  cleanPlatinumFocus();
   postEnhance(lang);
   installVisualPolish();
   bindTabs(); initPac(); bindPolarInteractions(); updatePolar(); updateSys(); route();
