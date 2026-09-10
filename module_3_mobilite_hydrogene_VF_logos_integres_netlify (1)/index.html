@@ -85,8 +85,9 @@ h4{margin:0 0 7px;color:#0b3448}.lead{font-size:clamp(1.08rem,1.42vw,1.36rem);ma
 .corridor{fill:none;stroke-width:12;stroke-linecap:round;opacity:.86;filter:drop-shadow(0 0 10px currentColor);transition:.25s}.corridor.active{stroke-width:18;opacity:1}.ca{stroke:#27d3e4}.cb{stroke:#ffd84d}.cc{stroke:#25bf86}.cd{stroke:#a991ff}.ce{stroke:#f09a35}
 .mapStats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:17px}.mapStat{padding:16px;border-radius:18px;background:#fff;border:1px solid var(--line);text-align:center}.mapStat b{font-size:1.6rem;color:#073047;display:block}
 .fleetScene{min-height:570px}.depot{height:380px;border-radius:28px;background:linear-gradient(145deg,#071f31,#0b5c6c);position:relative;overflow:hidden;padding:26px}.depot:before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:48px 48px}
-.stationHub{position:absolute;right:44px;top:55px;width:150px;height:130px;border-radius:28px;background:#fff;color:#082235;display:grid;place-items:center;text-align:center;font-weight:950}.fleetRoad{position:absolute;left:30px;right:30px;bottom:72px;height:9px;background:#dffcff;border-radius:99px}
-.vehicles{position:absolute;left:40px;right:220px;top:85px;display:grid;grid-template-columns:repeat(5,minmax(80px,1fr));gap:14px}.veh{height:92px;border-radius:22px 28px 16px 16px;background:linear-gradient(135deg,#d5f8e9,#25bf86);border:2px solid #20a775;position:relative;display:grid;place-items:center;font-weight:1000;color:#043f29;transition:.4s}.veh:before,.veh:after{content:"";position:absolute;bottom:-12px;width:25px;height:25px;border-radius:50%;background:#071722;border:6px solid #dffcff}.veh:before{left:14px}.veh:after{right:14px}.veh.warn{background:linear-gradient(135deg,#fff4d1,#f39a32)}.veh.fail{background:linear-gradient(135deg,#ffe1e6,#eb5269)}.queue{position:absolute;right:45px;bottom:44px;color:white;font-weight:950}
+.depot>div:first-child{position:relative;z-index:2;margin:0!important;min-height:50px;box-sizing:border-box}
+.stationHub{position:absolute;right:44px;top:112px;width:150px;height:130px;border-radius:28px;background:#fff;color:#082235;display:grid;place-items:center;text-align:center;font-weight:950}.fleetRoad{position:absolute;left:30px;right:30px;bottom:30px;height:9px;background:#dffcff;border-radius:99px}
+.vehicles{position:absolute;left:40px;right:220px;top:112px;display:grid;grid-template-columns:repeat(5,minmax(80px,1fr));gap:14px}.veh{height:92px;border-radius:22px 28px 16px 16px;background:linear-gradient(135deg,#d5f8e9,#25bf86);border:2px solid #20a775;position:relative;display:grid;place-items:center;font-weight:1000;color:#043f29;transition:.4s}.veh:before,.veh:after{content:"";position:absolute;bottom:-12px;width:25px;height:25px;border-radius:50%;background:#071722;border:6px solid #dffcff}.veh:before{left:14px}.veh:after{right:14px}.veh.warn{background:linear-gradient(135deg,#fff4d1,#f39a32)}.veh.fail{background:linear-gradient(135deg,#ffe1e6,#eb5269)}.queue{position:absolute;right:45px;bottom:0;color:white;font-weight:950}
 .quizQ{margin:18px 0;padding:20px;border:1px solid var(--line);border-radius:22px;background:#fff}.quizQ h4{font-size:1.08rem}.options{display:grid;gap:10px;margin-top:13px}.option{border:1px solid var(--line);background:#f8fcfe;padding:12px 14px;border-radius:14px;text-align:left;cursor:pointer;font-weight:800;color:#31566a}.option.correct{background:#e6fbf3;border-color:#6dd7b2}.option.wrong{background:#fff0f3;border-color:#f4a0af}.feedback{display:none;margin-top:12px;color:#4c6a7b}.feedback.show{display:block}.scoreBox{padding:24px;border-radius:26px;background:linear-gradient(145deg,#061c2c,#0b7080);color:white;text-align:center}.scoreBox b{font-size:3rem;display:block}
 .resources a{display:flex;justify-content:space-between;gap:12px;padding:16px 18px;background:#fff;border:1px solid var(--line);border-radius:18px;text-decoration:none;font-weight:900}.resources{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
 .footerNav{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:34px}
@@ -103,7 +104,7 @@ h4{margin:0 0 7px;color:#0b3448}.lead{font-size:clamp(1.08rem,1.42vw,1.36rem);ma
  h1{font-size:clamp(3.5rem,18vw,5.2rem)}.homecards,.usecards,.metricgrid,.mapStats{grid-template-columns:1fr}
  .heroVisual{min-height:420px}.mobility-chain{height:360px}.heroVehicle{width:90%;height:135px}.heroVehicle:before,.heroVehicle:after{width:52px;height:52px;bottom:-22px}.heroVehicle:before{left:55px}.heroVehicle:after{right:55px}
  .node{width:76px;height:84px;border-radius:20px;font-size:.72rem}.node span{font-size:1.55rem}.stationScene,.mapScene{height:540px}.cascade{transform:scale(.78);transform-origin:left top}.dispenser{left:38%;transform:scale(.8);transform-origin:left top}.carTank{right:15px;width:140px}.hose{display:none}.europe{width:340px}
- .vehicles{grid-template-columns:repeat(2,1fr);right:185px}
+ .depot{height:470px}.stationHub{top:170px}.vehicles{grid-template-columns:repeat(2,1fr);right:185px;top:170px}
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 
@@ -484,11 +485,17 @@ img,svg{max-width:100%}
 .station-metric-v2{position:relative;padding:18px;border-radius:20px;background:linear-gradient(180deg,#f9fdff,#f2fbfd);border:1px solid #dbeaf0;box-shadow:0 8px 18px rgba(16,70,91,.05)}
 .station-metric-v2 b{font-size:1.9rem;line-height:1.05;margin-bottom:8px;word-break:break-word}
 .station-metric-v2 small{display:block;font-size:.95rem;line-height:1.45}
-.station-metric-v2 .metric-info{position:absolute;top:12px;right:12px;width:24px;height:24px;padding:0;border:2px solid #08788e;border-radius:50%;background:#fff;color:#075b70;font:900 .9rem/1 inherit;cursor:help;display:grid;place-items:center;transition:.2s ease}
-.station-metric-v2 .metric-info:hover,.station-metric-v2 .metric-info:focus-visible{background:#0b7890;color:#fff;box-shadow:0 0 0 4px rgba(13,165,183,.16);outline:none}
+.station-metric-v2 .metric-info{position:absolute;top:12px;right:12px;width:25px;height:25px;padding:0;appearance:none;border:0;border-radius:50%;background:linear-gradient(145deg,#18aabd,#08788e);color:#fff;font:700 .95rem/25px Georgia,serif;cursor:help;display:grid;place-items:center;box-shadow:0 4px 9px rgba(8,120,142,.25),inset 0 1px 0 rgba(255,255,255,.35);transition:.2s ease}
+.station-metric-v2 .metric-info:hover,.station-metric-v2 .metric-info:focus-visible{background:linear-gradient(145deg,#08788e,#06596d);box-shadow:0 5px 12px rgba(8,120,142,.35),0 0 0 4px rgba(13,165,183,.16);outline:none;transform:translateY(-1px)}
 .station-metric-v2 .metric-tooltip{position:absolute;z-index:5;top:calc(100% + 9px);right:-8px;width:220px;padding:10px 12px;border:1px solid rgba(13,165,183,.22);border-radius:12px;background:#082b3d;color:#effcff;font-size:.78rem;font-weight:700;line-height:1.45;box-shadow:0 12px 24px rgba(6,27,43,.2);opacity:0;visibility:hidden;transform:translateY(-5px);transition:opacity .18s ease,transform .18s ease,visibility .18s ease;pointer-events:none}
 .station-metric-v2 .metric-tooltip:before{content:"";position:absolute;right:10px;top:-6px;width:10px;height:10px;background:#082b3d;border-left:1px solid rgba(13,165,183,.22);border-top:1px solid rgba(13,165,183,.22);transform:rotate(45deg)}
 .station-metric-v2 .metric-info:hover + .metric-tooltip,.station-metric-v2 .metric-info:focus-visible + .metric-tooltip{opacity:1;visibility:visible;transform:translateY(0)}
+.fleet-wait-metric{position:relative}
+.fleet-wait-metric .metric-info{position:absolute;top:12px;right:12px;width:25px;height:25px;padding:0;appearance:none;border:0;border-radius:50%;background:linear-gradient(145deg,#18aabd,#08788e);color:#fff;font:700 .95rem/25px Georgia,serif;cursor:help;display:grid;place-items:center;box-shadow:0 4px 9px rgba(8,120,142,.25),inset 0 1px 0 rgba(255,255,255,.35);transition:.2s ease}
+.fleet-wait-metric .metric-info:hover,.fleet-wait-metric .metric-info:focus-visible{background:linear-gradient(145deg,#08788e,#06596d);box-shadow:0 5px 12px rgba(8,120,142,.35),0 0 0 4px rgba(13,165,183,.16);outline:none;transform:translateY(-1px)}
+.fleet-wait-metric .metric-tooltip{position:absolute;z-index:5;top:calc(100% + 9px);right:-8px;width:220px;padding:10px 12px;border:1px solid rgba(13,165,183,.22);border-radius:12px;background:#082b3d;color:#effcff;font-size:.78rem;font-weight:700;line-height:1.45;box-shadow:0 12px 24px rgba(6,27,43,.2);opacity:0;visibility:hidden;transform:translateY(-5px);transition:opacity .18s ease,transform .18s ease,visibility .18s ease;pointer-events:none}
+.fleet-wait-metric .metric-tooltip:before{content:"";position:absolute;right:10px;top:-6px;width:10px;height:10px;background:#082b3d;border-left:1px solid rgba(13,165,183,.22);border-top:1px solid rgba(13,165,183,.22);transform:rotate(45deg)}
+.fleet-wait-metric .metric-info:hover + .metric-tooltip,.fleet-wait-metric .metric-info:focus-visible + .metric-tooltip{opacity:1;visibility:visible;transform:translateY(0)}
 .station-panel-v2{padding:28px;border-radius:30px}
 .station-head-v2 h3{font-size:1.55rem;margin-bottom:8px}
 .station-head-v2 p{max-width:900px;color:#567285;line-height:1.65}
@@ -809,7 +816,7 @@ img,svg{max-width:100%}
 <div class="metricgrid station-metricgrid-v2">
 <div class="metric station-metric-v2"><b id="fillTime">5.4 min</b><small>Durée estimée</small></div>
 <div class="metric station-metric-v2"><b id="kgDelivered">4.6 kg</b><small>H₂ distribué</small></div>
-<div class="metric station-metric-v2"><b id="waitTime">16 min</b><small>Temps d’attente total <button aria-describedby="station-wait-help" aria-label="Afficher la définition du temps d’attente" class="metric-info" type="button">i</button><span class="metric-tooltip" id="station-wait-help" role="tooltip">Temps cumulé de la file : remplissage et compression entre les ravitaillements.</span></small></div>
+<div class="metric station-metric-v2"><b id="waitTime">16 min</b><small>Temps d’attente total</small><button aria-describedby="station-wait-help" aria-label="Afficher la définition du temps d’attente" class="metric-info" type="button">i</button><span class="metric-tooltip" id="station-wait-help" role="tooltip">Temps cumulé de la file : remplissage et compression entre les ravitaillements.</span></div>
 <div class="metric station-metric-v2"><b id="stationState">Disponible</b><small>État de la station</small></div>
 </div>
 </aside>
@@ -965,7 +972,7 @@ img,svg{max-width:100%}
 <div class="metricgrid">
 <div class="metric"><b id="fleetNeed">240 kg</b><small>Besoin quotidien</small></div>
 <div class="metric"><b id="fleetReady">10 / 10</b><small>Véhicules prêts</small></div>
-<div class="metric"><b id="fleetWait">60 min</b><small>Temps d’attente total ℹ️<span style="display:block;font-size:.78rem;color:#506d80;margin-top:3px;font-weight:700">Temps cumulé de la file (incluant la compression inter-ravitaillements)</span></small></div>
+<div class="metric fleet-wait-metric"><b id="fleetWait">60 min</b><small>Temps d’attente total</small><button aria-describedby="fleet-wait-help" aria-label="Afficher la définition du temps d’attente" class="metric-info" type="button">i</button><span class="metric-tooltip" id="fleet-wait-help" role="tooltip">Temps cumulé de la file (incluant la compression inter-ravitaillements).</span></div>
 <div class="metric"><b id="fleetUse">83 %</b><small>Taux d’utilisation de la station</small></div>
 </div>
 </aside>
