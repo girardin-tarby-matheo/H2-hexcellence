@@ -739,6 +739,95 @@
       }
     }
 
+    /* Highlighting logic for H2 SVG Animation */
+    .molecule-stage .h2-part {
+      transition: opacity .35s ease, transform .35s ease, filter .35s ease;
+      cursor: pointer;
+    }
+
+    .molecule-stage .highlight-ring {
+      transition: opacity .35s ease, stroke .35s ease, stroke-width .35s ease;
+      pointer-events: none;
+    }
+
+    .molecule-stage .bond-line,
+    .molecule-stage .molecule-label {
+      transition: all .35s ease;
+    }
+
+    /* Mode: Atome H */
+    .molecule-stage[data-active-info="atom"] #atomLeftGroup {
+      opacity: 1;
+      filter: drop-shadow(0 0 16px rgba(39, 211, 228, 0.7));
+    }
+    .molecule-stage[data-active-info="atom"] .ring-atom-left {
+      opacity: 1;
+      animation: ringPulse 2s infinite ease-in-out;
+    }
+    .molecule-stage[data-active-info="atom"] #atomRightGroup,
+    .molecule-stage[data-active-info="atom"] #bondGroup {
+      opacity: 0.35;
+    }
+
+    /* Mode: Molécule H2 */
+    .molecule-stage[data-active-info="molecule"] #atomLeftGroup,
+    .molecule-stage[data-active-info="molecule"] #atomRightGroup,
+    .molecule-stage[data-active-info="molecule"] #bondGroup {
+      opacity: 1;
+      filter: drop-shadow(0 0 12px rgba(39, 211, 228, 0.5));
+    }
+    .molecule-stage[data-active-info="molecule"] .ring-molecule {
+      opacity: 1;
+      animation: ringPulse 2s infinite ease-in-out;
+    }
+    .molecule-stage[data-active-info="molecule"] .bond-line {
+      stroke: #27d3e4;
+      stroke-width: 18;
+      filter: drop-shadow(0 0 12px rgba(39, 211, 228, 0.9));
+    }
+    .molecule-stage[data-active-info="molecule"] .molecule-label {
+      fill: #0b7890;
+      font-size: 58px;
+    }
+
+    /* Mode: Vecteur */
+    .molecule-stage[data-active-info="carrier"] #atomLeftGroup,
+    .molecule-stage[data-active-info="carrier"] #atomRightGroup,
+    .molecule-stage[data-active-info="carrier"] #bondGroup {
+      opacity: 1;
+    }
+    .molecule-stage[data-active-info="carrier"] .bond-line {
+      stroke: #27d3e4;
+      stroke-dasharray: 10 6;
+      animation: bondFlow 1.2s linear infinite;
+    }
+
+    /* Mode: Présence naturelle */
+    .molecule-stage[data-active-info="rare"] #atomLeftGroup,
+    .molecule-stage[data-active-info="rare"] #atomRightGroup,
+    .molecule-stage[data-active-info="rare"] #bondGroup {
+      opacity: 1;
+    }
+
+    @keyframes ringPulse {
+      0%, 100% {
+        stroke-width: 4px;
+        stroke-opacity: 0.6;
+        filter: drop-shadow(0 0 4px rgba(39, 211, 228, 0.3));
+      }
+      50% {
+        stroke-width: 7px;
+        stroke-opacity: 1;
+        filter: drop-shadow(0 0 14px rgba(39, 211, 228, 0.95));
+      }
+    }
+
+    @keyframes bondFlow {
+      to {
+        stroke-dashoffset: -32;
+      }
+    }
+
     .info-pills {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -4349,7 +4438,7 @@
               <div class="reveal show" id="pillReveal">The H atom is very simple, but hydrogen systems use the H₂
                 molecule.</div>
             </article>
-            <div aria-label="Animation molécule H2" class="molecule-stage">
+            <div aria-label="Animation molécule H2" class="molecule-stage" id="moleculeStage" data-active-info="atom">
               <svg aria-label="Formation de la molécule H2" role="img" viewbox="0 0 720 460">
                 <defs>
                   <radialgradient cx="35%" cy="30%" id="atom">
@@ -4365,20 +4454,31 @@
                     </femerge>
                   </filter>
                 </defs>
-                <path d="M110 84 C230 24 490 24 610 84" fill="none" opacity=".35" stroke="#20c5d5" stroke-width="3">
-                </path>
-                <path d="M130 350 C245 412 475 412 590 350" fill="none" opacity=".35" stroke="#20c5d5" stroke-width="3">
-                </path>
-                <line opacity=".8" stroke="#082236" stroke-linecap="round" stroke-width="18" x1="300" x2="420" y1="220"
-                  y2="220"></line>
-                <circle cx="240" cy="220" fill="url(#atom)" filter="url(#glow)" r="96"></circle>
-                <circle cx="480" cy="220" fill="url(#atom)" filter="url(#glow)" r="96"></circle>
-                <text fill="white" font-size="84" font-weight="950" text-anchor="middle" x="240" y="246">H</text><text
-                  fill="white" font-size="84" font-weight="950" text-anchor="middle" x="480" y="246">H</text><text
-                  fill="#082236" font-size="58" font-weight="950" text-anchor="middle" x="360" y="390">H₂</text>
-                <g class="electron">
-                  <circle cx="170" cy="145" fill="#071c2b" r="8"></circle>
-                  <circle cx="550" cy="295" fill="#071c2b" r="8"></circle>
+                <!-- Halo molécule globale -->
+                <path class="highlight-ring ring-molecule" d="M240 100 H480 A120 120 0 0 1 480 340 H240 A120 120 0 0 1 240 100 Z" fill="none" stroke="#27d3e4" stroke-width="4" stroke-dasharray="8 8" opacity="0"></path>
+
+                <!-- Atome H Gauche -->
+                <g class="h2-part" id="atomLeftGroup" role="button" aria-label="H Atom" tabindex="0">
+                  <circle class="highlight-ring ring-atom-left" cx="240" cy="220" r="102" fill="none" stroke="#27d3e4" stroke-width="4" opacity="0"></circle>
+                  <path d="M110 84 C230 24 490 24 610 84" fill="none" opacity=".35" stroke="#20c5d5" stroke-width="3"></path>
+                  <circle class="atom-sphere" cx="240" cy="220" fill="url(#atom)" filter="url(#glow)" r="96"></circle>
+                  <text fill="white" font-size="84" font-weight="950" text-anchor="middle" x="240" y="246">H</text>
+                  <g class="electron"><circle cx="170" cy="145" fill="#071c2b" r="8"></circle></g>
+                </g>
+
+                <!-- Atome H Droit -->
+                <g class="h2-part" id="atomRightGroup" role="button" aria-label="Right H Atom" tabindex="0">
+                  <circle class="highlight-ring ring-atom-right" cx="480" cy="220" r="102" fill="none" stroke="#27d3e4" stroke-width="4" opacity="0"></circle>
+                  <path d="M130 350 C245 412 475 412 590 350" fill="none" opacity=".35" stroke="#20c5d5" stroke-width="3"></path>
+                  <circle class="atom-sphere" cx="480" cy="220" fill="url(#atom)" filter="url(#glow)" r="96"></circle>
+                  <text fill="white" font-size="84" font-weight="950" text-anchor="middle" x="480" y="246">H</text>
+                  <g class="electron"><circle cx="550" cy="295" fill="#071c2b" r="8"></circle></g>
+                </g>
+
+                <!-- Liaison Covalente & Label H2 -->
+                <g class="h2-part" id="bondGroup" role="button" aria-label="H2 Molecule" tabindex="0">
+                  <line class="bond-line" opacity=".8" stroke="#082236" stroke-linecap="round" stroke-width="18" x1="300" x2="420" y1="220" y2="220"></line>
+                  <text class="molecule-label" fill="#082236" font-size="58" font-weight="950" text-anchor="middle" x="360" y="390">H₂</text>
                 </g>
               </svg>
             </div>
