@@ -384,6 +384,11 @@
       padding: 18px
     }
 
+    .card.compact:hover {
+      transform: none;
+      box-shadow: var(--shadow2);
+    }
+
     .card.nohover:hover {
       transform: none
     }
@@ -1757,23 +1762,43 @@
     .warnline {
       height: 26px;
       border-radius: 999px;
-      background: linear-gradient(90deg, #cfeef1 0%, #cfeef1 4%, #ffd36f 4%, #ffb258 30%, #e25650 75%, #e5f1f3 75%);
+      background: linear-gradient(90deg, #cfeef1 0%, #ffd36f 12%, #ffb258 35%, #e25650 75%, #c9434d 100%);
       position: relative;
       margin: 18px 0;
       overflow: hidden;
       box-shadow: inset 0 0 0 1px rgba(8, 66, 92, .09)
     }
 
-    .warnline:after {
-      content: "Trop pauvre   |   Domaine inflammable   |   Trop riche";
+    .warnline-label {
       position: absolute;
-      inset: 0;
-      display: grid;
-      place-items: center;
+      top: 50%;
+      transform: translate(-50%, -50%);
       font-size: .72rem;
       font-weight: 900;
       color: rgba(6, 24, 38, .68);
-      letter-spacing: .03em
+      letter-spacing: .03em;
+      white-space: nowrap;
+      z-index: 1;
+      opacity: 0;
+      transition: color .2s ease, opacity .2s ease, transform .2s ease;
+    }
+
+    .warnline-label.poor {
+      left: 8%;
+    }
+
+    .warnline-label.flammable {
+      left: 42%;
+    }
+
+    .warnline-label.rich {
+      left: 87%;
+    }
+
+    .warnline-label.active {
+      opacity: 1;
+      color: #061826;
+      transform: translate(-50%, -50%) scale(1.04);
     }
 
     .warnline i {
@@ -2447,6 +2472,25 @@
       border-radius: 24px;
       background: linear-gradient(135deg, #071c2b, #0a6d7d);
       color: white
+    }
+
+    .scorebox h3 {
+      margin: 0 0 10px;
+      color: #fff;
+      font-size: clamp(1.35rem, 2vw, 1.8rem);
+    }
+
+    .scorebox p {
+      margin: 0;
+      color: rgba(255, 255, 255, .9);
+      line-height: 1.6;
+    }
+
+    .scorebox .score-message {
+      display: block;
+      margin-top: 8px;
+      font-weight: 800;
+      color: #bffcff;
     }
 
     .scorebox.show {
@@ -4530,6 +4574,47 @@
       min-width: 0;
     }
 
+    .combustion-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(420px, 1fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .combustion-layout > .combustion-copy,
+    .combustion-layout > .demo-box {
+      min-width: 0;
+    }
+
+    .combustion-layout > .demo-box {
+      height: 100%;
+      min-height: 430px;
+    }
+
+    .combustion-layout > .key-points {
+      grid-column: 1 / -1;
+    }
+
+    .combustion-layout .acc-head {
+      margin: 4px 0;
+      padding: 14px 12px;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      transition: transform .2s ease, background-color .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+
+    .combustion-layout .acc-head:hover {
+      transform: translateY(-2px);
+      background: rgba(39, 211, 228, .09);
+      border-color: rgba(39, 211, 228, .32);
+      box-shadow: 0 10px 24px rgba(6, 27, 43, .08);
+    }
+
+    .combustion-layout .acc-head:focus-visible {
+      outline: 3px solid rgba(39, 211, 228, .42);
+      outline-offset: 2px;
+    }
+
     /* Shared interaction motion for every actionable control. */
     button,
     .btn,
@@ -4592,6 +4677,17 @@
         width: 100%;
         max-width: none;
         margin-top: 4px;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .combustion-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .combustion-layout > .demo-box,
+      .combustion-layout > .key-points {
+        grid-column: auto;
       }
     }
 
@@ -4723,9 +4819,8 @@
                 <div class="video-callout">
                   <div aria-hidden="true" class="video-mark"></div>
                   <div>
-                    <h4>Vidéo d’introduction recommandée</h4>
-                    <p>Une courte ressource du CEA présentant l’hydrogène comme vecteur énergétique, sans chargement
-                      automatique dans la page.</p>
+                    <h4>Vidéo d’introduction</h4>
+                    <p>Ressource du CEA présentant l’hydrogène 
                   </div><a class="video-open"
                     href="https://www.cea.fr/multimedia/Pages/videos/culture-scientifique/energies/hydrogene-vecteur-energie-du-futur.aspx"
                     rel="noopener" target="_blank">Cliquer ici pour ouvrir la vidéo <small>↗</small></a>
@@ -5275,7 +5370,12 @@
                 attirées vers l’extraction et le niveau de risque visuel diminue.</p>
               <div class="control"><label>Concentration de H₂ dans l’air <output id="mixOut">12 %</output></label><input
                   class="range" id="mix" max="100" min="0" type="range" value="12" /></div>
-              <div class="warnline"><i id="mixMarker"></i></div><button class="btn secondary vent-btn" id="ventBtn"
+              <div class="warnline">
+                <span class="warnline-label poor" data-risk-label="poor">Trop pauvre</span>
+                <span class="warnline-label flammable" data-risk-label="flammable">Domaine inflammable</span>
+                <span class="warnline-label rich" data-risk-label="rich">Trop riche</span>
+                <i id="mixMarker"></i>
+              </div><button class="btn secondary vent-btn" id="ventBtn"
                 type="button">Activer la ventilation</button>
               <div class="explain-box" id="mixStatus"></div>
             </article>
@@ -5295,8 +5395,8 @@
               </div>
             </div>
           </div>
-          <div class="grid two" style="margin-top:24px">
-            <article class="panel">
+          <div class="combustion-layout" style="margin-top:24px">
+            <article class="panel combustion-copy">
               <h3>Démonstration : combustion d’une bulle de H₂</h3>
               <p>La démonstration met en évidence une combustion très rapide. Le bruit sec et l’éclair bref illustrent
                 la libération d’énergie, même avec une faible quantité de gaz.</p>
@@ -5314,28 +5414,28 @@
                 </div><a class="video-open" href="https://www.youtube.com/watch?v=QDMpDs6sy3A" rel="noopener"
                   target="_blank">Cliquer ici pour ouvrir la vidéo <small>↗</small></a>
               </div>
-              <div class="demo-box" id="demo">
-                <div class="demo-readout"><span class="demo-state" id="demoState">Bulle stable</span><span
-                    class="demo-time" id="demoTime">0 ms</span></div>
-                <div class="lab-dish"></div>
-                <div class="igniter-tip"></div>
-                <div class="bubble-h2"><span>H₂</span><i></i><i></i><i></i></div>
-                <div class="energy-spike"><svg aria-hidden="true" viewbox="0 0 220 150">
-                    <path
-                      d="M8 130 C 40 128, 48 120, 62 118 L 82 112 L 98 92 L 112 120 L 130 26 L 148 104 L 164 82 L 184 115 L 212 116">
-                    </path>
-                  </svg></div>
-                <div class="flash"></div>
-                <div class="wave"></div>
-                <div class="wave w2"></div>
-                <div class="wave w3"></div>
-                <div class="pop-label">POP</div>
-                <div class="fragments" id="fragments"></div>
-                <div class="demo-actions"><button class="btn teal" id="boomBtn" type="button">Démarrer la
-                    combustion</button></div>
-              </div>
             </article>
-            <article class="panel">
+            <div class="demo-box" id="demo">
+              <div class="demo-readout"><span class="demo-state" id="demoState">Bulle stable</span><span
+                  class="demo-time" id="demoTime">0 ms</span></div>
+              <div class="lab-dish"></div>
+              <div class="igniter-tip"></div>
+              <div class="bubble-h2"><span>H₂</span><i></i><i></i><i></i></div>
+              <div class="energy-spike"><svg aria-hidden="true" viewbox="0 0 220 150">
+                  <path
+                    d="M8 130 C 40 128, 48 120, 62 118 L 82 112 L 98 92 L 112 120 L 130 26 L 148 104 L 164 82 L 184 115 L 212 116">
+                  </path>
+                </svg></div>
+              <div class="flash"></div>
+              <div class="wave"></div>
+              <div class="wave w2"></div>
+              <div class="wave w3"></div>
+              <div class="pop-label">POP</div>
+              <div class="fragments" id="fragments"></div>
+              <div class="demo-actions"><button class="btn teal" id="boomBtn" type="button">Démarrer la
+                  combustion</button></div>
+            </div>
+            <article class="panel key-points">
               <h3>Points clés</h3>
               <div class="accordion">
                 <div class="acc-item open"><button class="acc-head" type="button">Diffusion rapide
@@ -5772,6 +5872,9 @@
           state = ['Mélange trop riche', 'La concentration est supérieure à la plage d’inflammabilité dans l’air. Le danger peut réapparaître si de l’oxygène est réintroduit ou si le mélange est partiellement dilué.', 'Instable'];
           stateClass = 'rich'; danger = .32;
         }
+        document.querySelectorAll('.warnline-label').forEach((label) => {
+          label.classList.toggle('active', label.dataset.riskLabel === (stateClass === 'inflammable' ? 'flammable' : stateClass === 'safe' ? 'poor' : 'rich'));
+        });
         riskStage?.classList.remove('safe', 'inflammable', 'rich');
         riskStage?.classList.add(stateClass);
         riskStage?.style.setProperty('--danger', danger.toFixed(2));
@@ -5801,6 +5904,24 @@
       document.querySelectorAll('.acc-head').forEach(btn => btn.addEventListener('click', () => { const item = btn.closest('.acc-item'); const open = item.classList.toggle('open'); btn.querySelector('span').textContent = open ? '−' : '+' }));
       document.querySelectorAll('.tabbtn').forEach(btn => btn.addEventListener('click', () => { document.querySelectorAll('.tabbtn').forEach(b => b.classList.remove('active')); document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active')); btn.classList.add('active'); document.getElementById(btn.dataset.tab).classList.add('active') }));
       const questions = [{ q: 'Pourquoi H2 est-il décrit comme un vecteur énergétique ?', a: ['Parce qu’il existe librement dans l’air', 'Parce qu’il stocke et transporte une énergie produite auparavant', 'Parce qu’il produit naturellement de l’électricité'], ok: 1, exp: 'Le H₂ n’est pas une source d’énergie primaire : il doit être produit avant d’être utilisé.' }, { q: 'Quelle réaction représente l’électrolyse de l’eau ?', a: ['2 H₂O → 2 H₂ + O₂', 'H₂ + O₂ → CO₂', 'CH₄ → H₂O + O₂'], ok: 0, exp: 'L’électrolyse dissocie l’eau en dihydrogène et en oxygène.' }, { q: 'Quel est un défi majeur du stockage du H₂ ?', a: ['Sa très faible densité volumique', 'Sa couleur bleue', 'Sa masse excessive'], ok: 0, exp: 'À pression ambiante, le H₂ occupe un grand volume, c’est pourquoi il est comprimé.' }, { q: 'Quelle plage d’inflammabilité du H₂ dans l’air est utilisée dans ce module ?', a: ['1 à 5%', '4 à 75%', '80 à 100%'], ok: 1, exp: 'La plage est large : environ 4 à 75 % dans l’air.' }, { q: 'Pourquoi un capteur est-il nécessaire ?', a: ['Parce que la flamme est toujours rouge', 'Parce que le H₂ est incolore et inodore, et que sa flamme peut être difficile à voir', 'Parce que le H₂ est solide à température ambiante'], ok: 1, exp: 'La détection ne peut pas reposer sur les sens humains.' }]; const quiz = document.getElementById('quiz'); const scoreBox = document.getElementById('scoreBox'); let answered = {}; function buildQuiz() { if (!quiz) return; quiz.innerHTML = ''; questions.forEach((qu, i) => { const wrap = document.createElement('div'); wrap.className = 'quiz-card'; wrap.innerHTML = `<h4>Question ${i + 1}</h4><p><strong>${qu.q}</strong></p>`; qu.a.forEach((ans, j) => { const b = document.createElement('button'); b.className = 'answer'; b.textContent = ans; b.addEventListener('click', () => answer(i, j, wrap)); wrap.appendChild(b) }); const exp = document.createElement('div'); exp.className = 'explain'; exp.textContent = qu.exp; wrap.appendChild(exp); quiz.appendChild(wrap) }); } function answer(i, j, wrap) { if (answered[i] !== undefined) return; answered[i] = j; const qu = questions[i]; wrap.querySelectorAll('.answer').forEach((b, k) => { b.disabled = true; if (k === qu.ok) b.classList.add('correct'); if (k === j && j !== qu.ok) b.classList.add('wrong') }); wrap.querySelector('.explain').classList.add('show'); if (Object.keys(answered).length === questions.length) showScore() } function showScore() { const score = questions.reduce((s, q, i) => s + (answered[i] === q.ok ? 1 : 0), 0); scoreBox.classList.add('show'); scoreBox.innerHTML = `<h3>Score : ${score} / ${questions.length}</h3><p>${score >= 4 ? 'Les fondamentaux sont acquis. Vous pouvez passer à la réalisation du poster de synthèse.' : 'Revoyez les séquences liées aux réponses incorrectes avant de préparer l’affiche.'}</p>`; } buildQuiz();
+      if (scoreBox) {
+        const originalShowScore = scoreBox.innerHTML;
+        const quizOutcomeObserver = new MutationObserver(() => {
+          if (!scoreBox.classList.contains('show') || scoreBox.dataset.localized === 'true') return;
+          const scoreMatch = scoreBox.textContent.match(/(\d+)\s*\/\s*(\d+)/);
+          if (!scoreMatch) return;
+          const score = Number(scoreMatch[1]);
+          const total = Number(scoreMatch[2]);
+          const message = score === total
+            ? 'Félicitations, toutes vos réponses sont correctes ! Vous pouvez passer à la réalisation du poster de synthèse.'
+            : score >= Math.ceil(total * .6)
+              ? 'Bon résultat. Recommencez le quiz pour consolider vos acquis et atteindre le sans-faute.'
+              : 'Plusieurs notions restent à revoir. Relisez le module, puis recommencez le quiz.';
+          scoreBox.innerHTML = `<h3>Score : ${score} / ${total}</h3><p class="score-message">${message}</p>`;
+          scoreBox.dataset.localized = 'true';
+        });
+        quizOutcomeObserver.observe(scoreBox, { childList: true, attributes: true, attributeFilter: ['class'] });
+      }
     })();
 
     const lightbox = document.getElementById('lightbox');
