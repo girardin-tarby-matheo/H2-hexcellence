@@ -4,7 +4,7 @@
 
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Module 2 - Pile à combustible</title>
+<title>Module 2 — Pile à combustible</title>
 <style>
 :root {
   --bg:#eef8fb; --bg2:#f8fdff; --ink:#061826; --text:#173245; --muted:#5b7688;
@@ -366,6 +366,13 @@ h3{text-wrap:balance}
 }
 .home-cards .card strong{font-size:1.05rem;color:#082235}
 .home-cards .card p{margin:8px 0 0;line-height:1.58;color:#4b6a7d}
+.hero h1{font-size:clamp(3.1rem,5.25vw,5.35rem);line-height:.98;letter-spacing:-.065em;white-space:nowrap}
+.hero .lead{max-width:690px;line-height:1.55;margin-bottom:18px}
+.home-cards{margin-top:18px;align-items:stretch}
+.home-cards .card{min-height:122px}
+@media(max-width:760px){.hero h1{white-space:normal;font-size:3.3rem}.hero .lead{line-height:1.65}.home-cards{margin-top:24px}.home-cards .card{min-height:0}}
+.sys-grid{grid-template-columns:minmax(0,1fr)}
+.sys-grid > *{min-width:0;width:100%}
 .home-visual{
   border-radius:38px;
   background:linear-gradient(145deg,#061b2b 0%,#0a5365 58%,#0ba5b7 100%);
