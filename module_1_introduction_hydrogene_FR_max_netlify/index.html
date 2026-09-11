@@ -3934,53 +3934,101 @@
 
     /* H2 Basics diagram spacing fix */
     .h2-course-diagram {
-      min-height: 500px;
-      padding: 20px 20px 86px;
+      display: grid;
+      place-content: center;
+      gap: clamp(12px, 1.6vw, 18px);
+      min-height: 0;
+      margin: 0;
+      padding: clamp(16px, 2.4vw, 28px);
     }
 
     .h2-course-diagram svg {
+      display: block;
       width: 100%;
       height: auto;
-      min-height: 390px;
-      display: block;
+      min-height: 0;
     }
 
-    .h2-course-diagram .diagram-caption {
-      left: 20px;
-      right: 20px;
-      bottom: 18px;
-      min-height: 68px;
-      padding: 14px 22px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+    .h2-course-diagram .h2-diagram-caption {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      align-items: start;
+      gap: 8px 12px;
+      margin: 0;
+      padding: 12px 16px;
+      border: 1px solid rgba(11, 165, 183, .22);
+      border-radius: 16px;
+      background: #e9fbff;
+      color: #154f60;
+      font-size: clamp(.88rem, 1.15vw, 1rem);
+      font-weight: 650;
+      line-height: 1.45;
+      text-align: left;
+    }
+
+    .h2-course-diagram .h2-diagram-caption strong {
+      color: #0a6f82;
+      white-space: nowrap;
+    }
+
+    .h2-course-diagram .atom-part {
+      cursor: help;
+      outline: none;
+    }
+
+    .h2-course-diagram .atom-part circle {
+      transition: filter .2s ease, stroke .2s ease, stroke-width .2s ease;
+    }
+
+    .h2-course-diagram .atom-part:hover circle,
+    .h2-course-diagram .atom-part:focus circle {
+      filter: url(#softGlow) drop-shadow(0 0 8px rgba(39, 211, 228, .85));
+      stroke: #fff;
+      stroke-width: 3;
+    }
+
+    .h2-course-diagram .atom-tooltip {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease;
+    }
+
+    .h2-course-diagram .atom-part:hover .atom-tooltip,
+    .h2-course-diagram .atom-part:focus .atom-tooltip {
+      opacity: 1;
+    }
+
+    .h2-course-diagram .atom-tooltip-box {
+      fill: #062337;
+      stroke: #27d3e4;
+      stroke-width: 1.5;
+    }
+
+    .h2-course-diagram .atom-tooltip-text {
+      fill: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      text-anchor: middle;
     }
 
     @media(max-width:980px) {
       .h2-course-diagram {
-        min-height: 460px;
-        padding-bottom: 82px
-      }
-
-      .h2-course-diagram svg {
-        min-height: 360px
+        gap: 14px;
+        padding: 18px;
       }
     }
 
     @media(max-width:560px) {
       .h2-course-diagram {
-        min-height: auto;
-        padding: 14px
+        gap: 12px;
+        padding: 14px;
       }
 
-      .h2-course-diagram svg {
-        min-height: 320px
-      }
-
-      .h2-course-diagram .diagram-caption {
-        position: static;
-        margin-top: 14px
+      .h2-course-diagram .h2-diagram-caption {
+        grid-template-columns: 1fr;
+        gap: 4px;
+        padding: 12px 14px;
+        text-align: center;
       }
     }
 
@@ -4392,19 +4440,27 @@
       justify-self: center;
     }
 
-    /* Keep video callouts readable when they sit in a narrow panel. */
+    /* Keep video callouts balanced across the different sequences. */
     .video-callout {
-      grid-template-columns: auto minmax(0, 1fr);
-      align-items: start;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 16px;
     }
 
     .video-callout .video-open {
-      grid-column: 1 / -1;
-      width: 100%;
+      grid-column: auto;
+      width: auto;
+      max-width: 220px;
       display: inline-flex;
       justify-content: center;
       text-align: center;
-      margin-top: 4px;
+      margin-top: 0;
+      padding: 11px 16px;
+      font-size: .9rem;
+    }
+
+    .video-callout > div:nth-child(2) {
+      min-width: 0;
     }
 
     /* Shared interaction motion for every actionable control. */
@@ -4455,6 +4511,20 @@
       .path-card:last-child {
         grid-column: auto;
         width: 100%;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .video-callout {
+        grid-template-columns: auto minmax(0, 1fr);
+        align-items: start;
+      }
+
+      .video-callout .video-open {
+        grid-column: 1 / -1;
+        width: 100%;
+        max-width: none;
+        margin-top: 4px;
       }
     }
 
@@ -4695,7 +4765,7 @@
               </div>
             </div>
             <div aria-label="Schéma atome hydrogène vers molécule H2" class="diagram-shell light h2-course-diagram">
-              <svg aria-labelledby="h2title" role="img" viewbox="0 0 760 420">
+              <svg aria-labelledby="h2title" role="img" viewbox="0 0 760 332">
                 <title id="h2title">Formation du dihydrogène H₂</title>
                 <defs>
                   <radialgradient cx="35%" cy="30%" id="nucleus">
@@ -4716,11 +4786,25 @@
                 </defs>
                 <rect fill="#f4fbfd" height="300" rx="34" stroke="#bfeaf1" width="220" x="24" y="28"></rect>
                 <text fill="#083247" font-size="24" font-weight="800" text-anchor="middle" x="134" y="76">Atome H</text>
-                <circle cx="134" cy="186" fill="url(#nucleus)" filter="url(#softGlow)" r="42"></circle>
+                <g aria-label="Proton : particule chargée positivement située dans le noyau" class="atom-part atom-proton"
+                  role="button" tabindex="0">
+                  <circle cx="134" cy="186" fill="url(#nucleus)" filter="url(#softGlow)" r="42"></circle>
+                  <g class="atom-tooltip proton-tooltip">
+                    <rect class="atom-tooltip-box" height="38" rx="10" width="200" x="34" y="92"></rect>
+                    <text class="atom-tooltip-text" x="134" y="116">Proton : charge positive</text>
+                  </g>
+                </g>
                 <circle cx="134" cy="186" fill="none" r="94" stroke="#0ba5b7" stroke-dasharray="8 10" stroke-width="3">
                 </circle>
-                <circle cx="214" cy="136" fill="#061b2b" r="10"></circle>
-                <text fill="#385b6c" font-size="17" text-anchor="middle" x="134" y="306">1 proton + 1 électron</text>
+                <g aria-label="Électron : particule chargée négativement autour du noyau" class="atom-part atom-electron"
+                  role="button" tabindex="0">
+                  <circle cx="214" cy="136" fill="#061b2b" r="10"></circle>
+                  <g class="atom-tooltip electron-tooltip">
+                    <rect class="atom-tooltip-box" height="38" rx="10" width="170" x="148" y="82"></rect>
+                    <text class="atom-tooltip-text" x="233" y="106">Électron : charge négative</text>
+                  </g>
+                </g>
+                <text fill="#385b6c" font-size="15" text-anchor="middle" x="134" y="306">Survolez le noyau ou l’électron</text>
                 <path d="M272 190 H348" stroke="url(#blueLine)" stroke-linecap="round" stroke-width="8"></path>
                 <path d="M335 170 L360 190 L335 210" fill="none" stroke="#0ba5b7" stroke-linecap="round"
                   stroke-width="8"></path>
@@ -4735,10 +4819,12 @@
                 <text dominant-baseline="middle" fill="#ffffff" font-size="34" font-weight="900" text-anchor="middle"
                   x="612" y="190">H</text>
                 <text fill="#c9fbff" font-size="18" text-anchor="middle" x="556" y="286">Liaison covalente stable</text>
-                <rect fill="#e9fbff" height="42" rx="21" stroke="#bdebf2" width="500" x="128" y="354"></rect>
-                <text fill="#0a6f82" font-size="18" font-weight="800" text-anchor="middle" x="378" y="381">H₂ : gaz
-                  produit par électrolyse mais pas uniquement (il peut aussi être produit par vaporeformage du gaz naturel, la pyrolyse, la biomasse, etc.), puis stocké ou utilisé.</text>
               </svg>
+              <p class="h2-diagram-caption">
+                <strong>À retenir</strong>
+                <span>Deux atomes H partagent une paire d’électrons : ils forment le dihydrogène H₂, la forme utilisée
+                  dans les systèmes énergétiques.</span>
+              </p>
             </div>
           </div>
           <div class="video-inline">
