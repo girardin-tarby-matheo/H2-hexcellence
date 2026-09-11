@@ -1130,7 +1130,23 @@
       display: grid;
       grid-template-columns: minmax(0, .95fr) minmax(380px, 1.05fr);
       gap: 24px;
-      align-items: center
+      align-items: stretch
+    }
+
+    .electro-grid > .simulator {
+      grid-row: 1 / span 2;
+      height: 100%;
+    }
+
+    .electro-grid > .electro-stage {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .electro-grid > .explain-box {
+      grid-column: 2;
+      grid-row: 2;
+      margin-top: 0;
     }
 
     .electro-stage {
@@ -1327,6 +1343,33 @@
       font-weight: 950;
       color: #082235;
       font-size: 1.8rem
+    }
+
+    .efficiency-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-align: center;
+    }
+
+    .efficiency-box .eff-ring {
+      width: 86px;
+      height: 86px;
+      margin: 0;
+    }
+
+    .efficiency-box .eff-ring:before {
+      inset: 9px;
+    }
+
+    .efficiency-box .eff-ring span {
+      font-size: 1.25rem;
+    }
+
+    .metric-efficiency-value {
+      display: none;
     }
 
     /* Risk - V6 enhanced */
@@ -2832,6 +2875,17 @@
         min-height: 420px
       }
 
+      .electro-grid > .simulator {
+        grid-row: auto;
+        height: auto;
+      }
+
+      .electro-grid > .electro-stage,
+      .electro-grid > .explain-box {
+        grid-column: auto;
+        grid-row: auto;
+      }
+
       .grid.four {
         grid-template-columns: repeat(2, minmax(0, 1fr))
       }
@@ -4228,16 +4282,32 @@
 
   <style id="production-diagram-refinement">
     #media-production-schema .diagram-shell {
-      min-height: 560px;
-      padding: 30px 28px 108px;
+      min-height: 0;
+      padding: 24px 28px;
+      display: grid;
+      gap: 16px;
+      align-content: center;
     }
 
     #media-production-schema .diagram-shell svg {
       display: block;
       width: 100%;
       height: auto;
-      min-height: 420px;
+      min-height: 0;
       margin: 0 auto;
+    }
+
+    #media-production-schema .production-formula {
+      margin: 0;
+      padding: 14px 18px;
+      border: 1px solid rgba(11, 165, 183, .22);
+      border-radius: 16px;
+      background: #e9fbff;
+      color: #082235;
+      font-size: clamp(.95rem, 1.35vw, 1.15rem);
+      font-weight: 900;
+      line-height: 1.4;
+      text-align: center;
     }
 
     #media-production-schema .diagram-caption {
@@ -4254,20 +4324,13 @@
 
     @media(max-width:980px) {
       #media-production-schema .diagram-shell {
-        min-height: 520px;
-        padding-bottom: 102px;
+        padding: 22px;
       }
     }
 
     @media(max-width:560px) {
       #media-production-schema .diagram-shell {
-        min-height: auto;
         padding: 18px;
-      }
-
-      #media-production-schema .diagram-caption {
-        position: static;
-        margin-top: 16px;
       }
     }
   </style>
@@ -4451,12 +4514,16 @@
       grid-column: auto;
       width: auto;
       max-width: 220px;
+      min-width: 0;
       display: inline-flex;
       justify-content: center;
       text-align: center;
       margin-top: 0;
       padding: 11px 16px;
       font-size: .9rem;
+      line-height: 1.25;
+      white-space: normal;
+      overflow-wrap: anywhere;
     }
 
     .video-callout > div:nth-child(2) {
@@ -5009,8 +5076,6 @@
                 </defs>
                 <text fill="#083247" font-size="28" font-weight="900" text-anchor="middle" x="410" y="24">Production de
                   H₂ par électrolyse</text>      
-                <text fill="#082235" font-size="28" font-weight="900" text-anchor="middle" dominant-baseline="middle"
-                  x="410" y="66">2 H₂O(l) + Électricité → 2 H₂(g) + O₂(g) + Chaleur</text>
                 <rect fill="url(#water)" height="220" rx="38" stroke="#087b92" stroke-width="3" width="450" x="185"
                   y="184"></rect>
                 <rect fill="#eefcff" height="238" rx="34" stroke="#0ba5b7" stroke-width="3" width="86" x="244" y="150">
@@ -5052,6 +5117,7 @@
                   y="218">Sorties</text><text fill="#083247" font-size="20" font-weight="900" text-anchor="middle"
                   x="721" y="247">H₂ + O₂</text>
               </svg>
+              <p class="production-formula">2 H₂O(l) + Électricité → 2 H₂(g) + O₂(g) + Chaleur</p>
 
             </div>
             <div class="media-copy">
@@ -5081,12 +5147,12 @@
                 <div class="metric-box">
                   <div class="num" id="energyRate">0</div><span class="label">indice énergétique</span>
                 </div>
-                <div class="metric-box">
-                  <div class="num" id="efficiency">0</div><span class="label">rendement visuel</span>
+                <div class="metric-box efficiency-box">
+                  <div class="eff-ring" id="effRing"><span id="effRingText">0%</span></div>
+                  <span class="label">rendement visuel</span>
+                  <span class="metric-efficiency-value" id="efficiency">0</span>
                 </div>
               </div>
-              <div class="eff-ring" id="effRing"><span id="effRingText">0%</span></div>
-              <div class="explain-box" id="electroExpliquer"></div>
             </article>
             <div aria-label="Animation électrolyse" class="electro-stage" id="electroStage">
               <div class="wire"></div>
@@ -5099,6 +5165,7 @@
               <div class="gas-label o2">Anode : O₂</div><span class="ion"></span><span class="ion o2"></span><span
                 class="ion"></span><span class="ion o2"></span><span class="ion"></span><span class="ion o2"></span>
             </div>
+            <div class="explain-box" id="electroExpliquer"></div>
           </div>
           <div class="grid three" style="margin-top:24px">
             <article class="card"><strong>Anode</strong>
