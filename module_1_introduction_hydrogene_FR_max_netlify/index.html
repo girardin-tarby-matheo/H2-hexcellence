@@ -2528,6 +2528,30 @@
       color: #0b7f92
     }
 
+    .poster-layout {
+      display: block;
+    }
+
+    .poster-guidance {
+      margin-top: 22px;
+      padding: clamp(20px, 2.5vw, 30px);
+      border: 1px solid rgba(39, 211, 228, .24);
+      border-left: 5px solid var(--cyan);
+      border-radius: 22px;
+      background: linear-gradient(135deg, #eefcff, #ffffff);
+    }
+
+    .poster-guidance h3 {
+      margin-bottom: 8px;
+    }
+
+    .poster-guidance p {
+      max-width: 980px;
+      margin: 0;
+      color: #3d6072;
+      line-height: 1.7;
+    }
+
 
     /* V7 refinements: partner identity, larger rhythm, stronger responsive layout */
     .partner-nav {
@@ -5835,7 +5859,7 @@
           <h2>Vérifier les acquis et préparer l’affiche.</h2>
           <p class="lead">La dernière partie associe une synthèse visuelle et un quiz final. Le quiz n’apparaît qu’ici
             afin que l’évaluation reste clairement positionnée à la fin du module.</p>
-          <div class="grid two">
+          <div class="poster-layout">
             <article class="poster-preview">
               <h3>Affiche de référence simplifiée</h3>
               <div class="poster-reference">
@@ -5862,19 +5886,11 @@
                 </div>
               </div>
             </article>
-            <article class="panel">
+            <div class="poster-guidance">
               <h3>Consignes pour l’affiche</h3>
               <p>L’affiche finale doit être compréhensible seule, organisée en sections, avec un schéma central, des
                 données simples et des messages clés. Elle ne doit pas devenir une copie du cours.</p>
-              <div class="grid two">
-                <div class="card nohover"><strong>Clarté</strong>
-                  <p>Hiérarchie visuelle claire, titres courts et phrases concises.</p>
-                </div>
-                <div class="card nohover"><strong>Exactitude</strong>
-                  <p>Réactions, risques et notions énergétiques corrects.</p>
-                </div>
-              </div>
-            </article>
+            </div>
           </div>
           <article class="panel" style="margin-top:24px">
             <h3>Quiz final</h3>
